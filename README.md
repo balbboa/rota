@@ -1,8 +1,10 @@
-# Install dependencies
+Next.js / ESLint / Husky / Styled-Components / Styled Icons
+
+## Install dependencies
 yarn install
 
-# Enable husky
+## Enable husky
 yarn husky install
 
-# Start dev server
+## Start dev server
 yarn dev
