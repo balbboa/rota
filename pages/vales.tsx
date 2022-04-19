@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Container from "../components/Container";
 
-const Home: NextPage = () => {
+const Vales: NextPage = () => {
   return (
-    <Container title="Dashboard">
-      <div>Dashboard</div>
+    <Container title="Meus Vales">
+      <div>Vales</div>
     </Container>
   );
 };
 
-export default Home;
+export default Vales;
