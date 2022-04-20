@@ -9,11 +9,11 @@ export const CustomCard = styled.div`
     border-radius: 25px;
     cursor: pointer;
     width: 200px;
-
+    height: 150px;
   }
 `;
 
-export const TextCard = styled.h3`
+export const TextCard = styled.h4`
   margin-top: 10px;
 `;
 
