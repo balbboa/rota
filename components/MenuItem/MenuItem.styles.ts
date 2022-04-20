@@ -33,4 +33,8 @@ export const MenuItemContainer = styled.a<{ depth: number }>`
     color: ${(props) => props.theme.colors.textLight};
     border-radius: 16px;
   }
+
+  :last-child {
+    color: #FF4842;
+  }
 `;

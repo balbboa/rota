@@ -5,6 +5,7 @@ import {
   LocalDining,
   AccountBalanceWallet,
   Person,
+  ExitToApp
 } from "@styled-icons/material";
 
 const MENU_OPTIONS: MenuOption[] = [
@@ -63,6 +64,11 @@ const MENU_OPTIONS: MenuOption[] = [
     name: "Marcação de DO",
     icon: Person,
     url: "/marcacao",
+  },
+  {
+    name: "Sair",
+    icon: ExitToApp,
+    url: "/login",
   },
 ];
 

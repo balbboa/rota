@@ -33,9 +33,9 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
         src={userPic}
         alt="Você"/>
         <Text>Balboa</Text> 
-        <IconContainer>
+        {/* <IconContainer>
         <KeyboardArrowDown />
-        </IconContainer>
+        </IconContainer> */}
       </TitleContainer>
       
     </HeaderContainer>
