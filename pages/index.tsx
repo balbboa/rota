@@ -6,6 +6,7 @@ const Home: NextPage = () => {
   return (
     <Container title="Dashboard">
       <DashboardCards />
+      
     </Container>
   );
 };
