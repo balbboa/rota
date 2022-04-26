@@ -9,7 +9,7 @@ export const MenuItemContainer = styled.a<{ depth: number }>`
   justify-content: space-between;
   padding: 20px;
   margin: 25px;
-  color: #B8BED9;
+  color: #878c9f;
 
   & svg {
     height: 30px;

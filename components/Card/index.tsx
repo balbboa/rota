@@ -49,7 +49,7 @@ export default function DashboardCards() {
 
     <Link href="/diarias" passHref >
         <CustomCard>
-        <Card sx={{ maxWidth: 200 }}>
+        <Card sx={{ maxWidth: 345 }}>
         <CardContent>
         <Image
             src={Credit}

@@ -8,7 +8,7 @@ export const CustomCard = styled.div`
     color: white;
     border-radius: 25px;
     cursor: pointer;
-    width: 200px;
+    width: 250px;
     height: 150px;
 
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);

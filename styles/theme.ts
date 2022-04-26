@@ -8,6 +8,6 @@ export const theme: DefaultTheme = {
     textDark: "#000",
     textLight: "#fff",
     greyBg: "#d8dcd6",
-    customBg: "#f2f8ff !important",
+    customBg: "#e4f6ff",
   },
 };
