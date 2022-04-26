@@ -6,7 +6,6 @@ import Calendar from '../../public/calendar.png';
 import Meal from '../../public/meal.png';
 import Search from '../../public/search.png';
 import Credit from '../../public/credit-card.png';
-import Typography from '@mui/material/Typography';
 import Link from "next/link";
 import { Container, CustomCard, TextCard } from './Card.styles';
 
@@ -50,7 +49,7 @@ export default function DashboardCards() {
 
     <Link href="/diarias" passHref >
         <CustomCard>
-        <Card sx={{ maxWidth: 200 }}>
+        <Card sx={{ maxWidth: 345 }}>
         <CardContent>
         <Image
             src={Credit}

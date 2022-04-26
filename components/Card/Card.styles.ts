@@ -8,8 +8,12 @@ export const CustomCard = styled.div`
     color: white;
     border-radius: 25px;
     cursor: pointer;
-    width: 200px;
+    width: 250px;
     height: 150px;
+
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
   }
 `;
 
@@ -20,5 +24,6 @@ export const TextCard = styled.h4`
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 25px;
 `;

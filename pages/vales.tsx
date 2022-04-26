@@ -104,9 +104,7 @@ const rows = [
 const Vales: NextPage = () => {
   return (
     <Container title="Meus Vales">
-      <div>
-        <DataTable columns={columns} rows={rows} />
-      </div>
+      <DataTable columns={columns} rows={rows} />
     </Container>
   );
 };

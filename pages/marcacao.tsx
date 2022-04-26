@@ -5,9 +5,6 @@ import DataTable from "../components/Table";
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
-
-
-
 const Marcacao: NextPage = () => {
   const [open, setOpen] = React.useState(false);
 
