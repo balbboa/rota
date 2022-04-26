@@ -24,7 +24,7 @@ import { useState } from "react";
 // ];
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Código', type: 'number', width: 70 },
+  { field: 'id', headerName: 'Código', type: 'number', width: 130 },
   { field: 'name', headerName: 'Nome', type: 'string', width: 300 },
 ];
 
@@ -109,6 +109,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   
 
   const rows = data.map(item => ({id: item.id, name: item.name}))
+  console.log(rows)
 
   return{
     props: {
@@ -125,11 +126,11 @@ const Escalas: NextPage = ({ repositories }) => {
       {/* <DataTable columns={columns} rows={rows} /> */}
        <DataTable columns={columns} rows={repositories} /> 
       
-      <ul>
+      {/* <ul>
         {repositories.map((repo) => 
         <li key={repo}>{repo}</li>
         )}
-      </ul>
+      </ul> */}
     </Container>
   );
 };

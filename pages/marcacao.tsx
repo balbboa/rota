@@ -72,7 +72,7 @@ const Marcacao: NextPage = () => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Ao confirmar a marcação você se compromete a comparecer no dia e hora descritos, o não comparecimento acarretará acionamento de medidas cabiveis 
+            Ao confirmar a marcação você se compromete a comparecer no dia e hora descritos, o não comparecimento acarretará o acionamento de medidas cabiveis. 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -81,7 +81,7 @@ const Marcacao: NextPage = () => {
             Cancelar
           </Button>
         </DialogActions>
-      </Dialog>
+        </Dialog>
       </div>
     </Container>
   );
