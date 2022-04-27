@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
@@ -102,14 +101,14 @@ const rows = [
       },
 ];
 
-const Vales: NextPage = () => {
+function Vales() {
   return (
     <Container title="Meus Vales">
       <Tittle>Meus Vales</Tittle>
       <DataTable columns={columns} rows={rows} />
     </Container>
   );
-};
+}
 
 export default Vales;
 

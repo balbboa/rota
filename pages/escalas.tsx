@@ -1,4 +1,4 @@
-import type { GetStaticProps } from "next";
+import type { GetServerSideProps } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
@@ -30,7 +30,7 @@ const columns: GridColDef[] = [
 
 const data = new Date()
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch('https://api.github.com/users/balbboa/repos')
   const data = await response.json();
 

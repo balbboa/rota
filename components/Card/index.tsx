@@ -13,7 +13,7 @@ import { Container, CustomCard, TextCard } from './Card.styles';
 export default function DashboardCards() {
   return (
     <Container>
-    <Link href="/escalas" passHref >
+    <Link href="/escalas">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -30,7 +30,7 @@ export default function DashboardCards() {
         </CustomCard>
     </Link>
 
-    <Link href="/vales" passHref >
+    <Link href="/vales">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -47,7 +47,7 @@ export default function DashboardCards() {
         </CustomCard>
     </Link>
 
-    <Link href="/diarias" passHref >
+    <Link href="/diarias">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -64,7 +64,7 @@ export default function DashboardCards() {
         </CustomCard>
     </Link>
 
-    <Link href="/marcacao" passHref >
+    <Link href="/marcacao">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>

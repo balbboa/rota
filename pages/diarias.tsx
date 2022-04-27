@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
@@ -101,13 +100,13 @@ const rows = [
       },
 ];
 
-const Diarias: NextPage = () => {
+function Diarias() {
   return (
     <Container title="Minhas Diárias">
-      <Tittle>Minhas Diárias</Tittle>        
+      <Tittle>Minhas Diárias</Tittle>
       <DataTable columns={columns} rows={rows} />
     </Container>
   );
-};
+}
 
 export default Diarias;
