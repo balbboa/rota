@@ -1,9 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetStaticProps } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
 import { Chip } from "@mui/material";
-import { useState } from "react";
+import { Tittle } from "../components/Container/Container.Styles";
 
 // const columns: GridColDef[] = [
 //   { field: 'id', headerName: 'Código', type: 'number', width: 70 },
@@ -30,86 +30,11 @@ const columns: GridColDef[] = [
 
 const data = new Date()
 
-// const rows = [
-//   { 
-//     id: 1, 
-//     unit:'CPC',
-//     type:'ORDINÁRIA',
-//     startDate: new Date(),
-//     time: data.getHours(),
-//     situation:{ name:'Fiscalizada', color: 'success'},
-//   },
-//   { 
-//     id: 5, 
-//     unit:'CPC',
-//     type:'ORDINÁRIA',
-//     startDate: new Date(),
-//     time: data.getHours(),
-//     situation:{ name:'Fiscalizada', color: 'success'}, 
-//   },
-//   {
-//     id: 2, 
-//     unit:'CPC',
-//     type:'ORDINÁRIA',
-//     startDate: new Date(),
-//     time: data.getHours(),
-//     situation:{ name:'Concluída', color: 'info'},
-//   },
-//   { 
-//     id: 3, 
-//     unit:'CPC',
-//     type:'ORDINÁRIA',
-//     startDate: new Date(),
-//     time: data.getHours(),
-//     situation:{ name:'Digitando', color: 'error'},
-//    },  
-//    { 
-//      id: 4, 
-//      unit:'4º BPM',
-//      type:'ORDINÁRIA',
-//      startDate: new Date(),
-//      time: data.getHours(),
-//      situation:{ name:'Fiscalizada', color: 'success'},
-
-//     },
-//     {
-//       id: 6, 
-//       unit:'11º BPM',
-//       type:'ESPECIAL',
-//       startDate: new Date(),
-//       time: data.getHours(),
-//       situation:{ name:'Concluída', color: 'info'}
-//     },
-//     { 
-//       id: 7, 
-//       unit:'2º BPM',
-//       type:'EXTRAORDINÁRIA',
-//       startDate: new Date(),
-//       time: data.getHours(),
-//       situation:{ name:'Digitando', color: 'error'},
-//      },  
-//      { 
-//        id: 8, 
-//        unit:'4º BPM',
-//        type:'EXTRAORDINÁRIA',
-//        startDate: new Date(),
-//        time: data.getHours(),
-//        situation:{ name:'Fiscalizada', color: 'success'},
-//       },
-// ];
-
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await fetch('https://api.github.com/users/balbboa/repos')
-  
   const data = await response.json();
-  const respositoryNames = data.map((item) => {
-    const id = item.id
-    const name= item.name
-  });
-  
 
   const rows = data.map(item => ({id: item.id, name: item.name}))
-  console.log(rows)
 
   return{
     props: {
@@ -119,20 +44,14 @@ export const getServerSideProps: GetServerSideProps = async () => {
 }
 
 
-const Escalas: NextPage = ({ repositories }) => {
+function Escalas({ repositories }) {
 
   return (
     <Container title="Escalas">
-      {/* <DataTable columns={columns} rows={rows} /> */}
-       <DataTable columns={columns} rows={repositories} /> 
-      
-      {/* <ul>
-        {repositories.map((repo) => 
-        <li key={repo}>{repo}</li>
-        )}
-      </ul> */}
+      <Tittle>Minhas Escalas</Tittle>
+      <DataTable columns={columns} rows={repositories} />
     </Container>
   );
-};
+}
 
 export default Escalas;

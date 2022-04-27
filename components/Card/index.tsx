@@ -23,7 +23,7 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Minhas Escalas
+                Escalas
             </TextCard>
         </CardContent>
         </Card>
@@ -40,7 +40,7 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Meus Vales
+                Vales
             </TextCard>
         </CardContent>
         </Card>
@@ -57,7 +57,7 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Minhas Diárias
+                Diárias
             </TextCard>
         </CardContent>
         </Card>
@@ -74,7 +74,7 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Marcação de DO
+                Marcar
             </TextCard>
         </CardContent>
         </Card>

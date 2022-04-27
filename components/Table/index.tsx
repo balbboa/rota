@@ -5,7 +5,6 @@ import {
   GridToolbarColumnsButton,
   GridToolbarContainer,
   GridToolbarFilterButton,
-  MAX_PAGE_SIZE,
   ptBR} from '@mui/x-data-grid';
 interface IParams {
   columns: GridColDef[],
@@ -16,8 +15,8 @@ interface IParams {
 function CustomToolbar() {
   return (
     <GridToolbarContainer>
-      <GridToolbarColumnsButton />
-      <GridToolbarFilterButton />
+      <GridToolbarColumnsButton touchRippleRef={undefined} />
+      <GridToolbarFilterButton components={undefined} />
       {/* <GridToolbarDensitySelector />
       <GridToolbarExport /> */}
     </GridToolbarContainer>
@@ -32,6 +31,7 @@ export default function DataTable({columns, rows}:IParams) {
         rows={rows}
         columns={columns}
         autoHeight
+        pageSize={10}
         rowsPerPageOptions={[10]}
         components={{
           Toolbar: CustomToolbar,

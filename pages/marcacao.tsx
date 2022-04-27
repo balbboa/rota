@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Tittle } from '../components/Container/Container.Styles';
 
 const Marcacao: NextPage = () => {
   const [open, setOpen] = React.useState(false);
@@ -26,7 +27,6 @@ const Marcacao: NextPage = () => {
         <Button
           variant="contained"
           color="primary"
-          style={{ marginLeft: 16 }}
           onClick={handleClickOpen}
         >
           Marcar
@@ -59,30 +59,29 @@ const Marcacao: NextPage = () => {
   ];
   return (
     <Container title="Marcação de DO">
-     <div>
-        <DataTable columns={columns} rows={rows} />
-        <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Confirmar marcação de Diária?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Ao confirmar a marcação você se compromete a comparecer no dia e hora descritos, o não comparecimento acarretará o acionamento de medidas cabiveis. 
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Confirmar</Button>
-          <Button onClick={handleClose} autoFocus>
-            Cancelar
-          </Button>
-        </DialogActions>
-        </Dialog>
-      </div>
+      <Tittle>Marcação de Diárias Operacionais</Tittle>
+      <DataTable columns={columns} rows={rows} />
+      <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">
+        {"Confirmar marcação de Diária?"}
+      </DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Ao confirmar a marcação você se compromete a comparecer no dia e hora descritos, o não comparecimento acarretará o acionamento de medidas cabiveis. 
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Confirmar</Button>
+        <Button onClick={handleClose} autoFocus>
+          Cancelar
+        </Button>
+      </DialogActions>
+      </Dialog>
     </Container>
   );
 };

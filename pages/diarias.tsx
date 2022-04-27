@@ -3,6 +3,7 @@ import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
 import { Chip } from "@mui/material";
+import { Tittle } from "../components/Container/Container.Styles";
 
 
 const columns: GridColDef[] = [
@@ -103,9 +104,8 @@ const rows = [
 const Diarias: NextPage = () => {
   return (
     <Container title="Minhas Diárias">
-       <div>
-        <DataTable columns={columns} rows={rows} />
-      </div>
+      <Tittle>Minhas Diárias</Tittle>        
+      <DataTable columns={columns} rows={rows} />
     </Container>
   );
 };
