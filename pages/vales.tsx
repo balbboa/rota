@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { GridColDef } from '@mui/x-data-grid';
 import Alert from "@mui/material/Alert";
 import { Chip } from "@mui/material";
 
