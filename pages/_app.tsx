@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import DashboardLayout from "../components/DashboardLayout/DashboardLayout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
+import SignIn from "./signin";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <DashboardLayout>
         <Component {...pageProps} />
       </DashboardLayout>
+      {/* <SignIn /> */}
     </ThemeProvider>
   );
 }

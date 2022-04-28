@@ -1,55 +1,75 @@
-import type { GetServerSideProps, GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import { Chip } from "@mui/material";
+import {  Button, Chip, TextField } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
-
-// const columns: GridColDef[] = [
-//   { field: 'id', headerName: 'Código', type: 'number', width: 70 },
-//   { field: 'unit', headerName: 'Unidade',  type: 'string', width: 100 },
-//   { field: 'type', headerName: 'Tipo',  type: 'string', width: 250 },
-//   { field: 'startDate', headerName: 'Data', type:'date', width: 130 },
-//   { field: 'time', headerName: 'Duração',  type: 'dateTime', width: 70 },
-//   { field: 'obs', headerName: 'Observação',  type: 'dateTime', width: 200 },
-//   { 
-//     field: 'situation', 
-//     headerName: 'Situação' ,
-//     renderCell: (params) => (
-//       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
-//     ),
-//     width: 130,
-     
-//     }
-// ];
+import { Form } from "../components/Form/Form.Styles";
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Código', type: 'number', width: 130 },
-  { field: 'name', headerName: 'Nome', type: 'string', width: 300 },
+  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 70 },
+  { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 100 },
+  { field: 'inicio', headerName: 'Início', type: 'date', width: 130 },
+  { field: 'termino', headerName: 'Término', type: 'date', width: 130 },
+  { field: 'local', headerName: 'Local', type: 'string', width: 130 },
+  { field: 'observacao', headerName: 'Observação', type: 'string', width: 100 },
+  { 
+    field: 'situacao', 
+      headerName: 'Situação' ,
+    renderCell: (params) => (
+      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
+    ),
+    width: 130,
+   },
 ];
 
-const data = new Date()
+// export const getStaticProps: GetStaticProps = async () => {
+//   const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
+//   const data = await response.json();
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch('https://api.github.com/users/balbboa/repos')
-  const data = await response.json();
+//   const rows = data.map(item => ({
+//     titulo_escala: item.titulo_escala, 
+//     prefixo_posto: item.prefixo_posto,
+//     inicio: item.inicio,
+//     termino: item.termino,
+//     local: item.local,
+//     observacao: item.observacao,
+//     situacao: item.situacao,
+//   }))
 
-  const rows = data.map(item => ({id: item.id, name: item.name}))
+//   return{
+//     props: {
+//       escalas: rows,
+//     }
+//   }
+// }
 
-  return{
-    props: {
-      repositories: rows,
-    }
-  }
-}
-
-
-function Escalas({ repositories }) {
+function Escalas({ escalas }) {
 
   return (
     <Container title="Escalas">
       <Tittle>Minhas Escalas</Tittle>
-      <DataTable columns={columns} rows={repositories} />
+        <Form>
+              <TextField
+                name="inicio"
+                label="Início"
+                InputLabelProps={{ shrink: true, required: true }}
+                type="date"
+              />
+              <TextField
+                name="termino"
+                label="Término"
+                InputLabelProps={{ shrink: true, required: true }}
+                type="date"
+              />
+              <Button
+                type="submit"
+                variant="contained"
+              >
+                Consultar
+              </Button>
+        </Form>
+      {/* <DataTable columns={columns} rows={escalas} /> */}
     </Container>
   );
 }
