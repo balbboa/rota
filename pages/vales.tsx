@@ -1,9 +1,9 @@
-import type { NextPage } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
 import Alert from "@mui/material/Alert";
 import { Chip } from "@mui/material";
+import { Tittle } from "../components/Container/Container.Styles";
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Código', type: 'number', width: 70 },
@@ -101,13 +101,14 @@ const rows = [
       },
 ];
 
-const Vales: NextPage = () => {
+function Vales() {
   return (
     <Container title="Meus Vales">
+      <Tittle>Meus Vales</Tittle>
       <DataTable columns={columns} rows={rows} />
     </Container>
   );
-};
+}
 
 export default Vales;
 

@@ -11,15 +11,29 @@ export const HeaderContainer = styled.header`
 `;
 
 export const IconContainer = styled.div`
-  padding: 10px;
+  @media(min-width: 992px) {
+    display: none; 
+  }
 
   & svg {
     height: 30px;
   }
+  padding: 10px;
 
   &:hover {
     cursor: pointer;
   }
+`;
+
+export const LogoContainer = styled.div`
+  &:hover {
+    cursor: pointer;
+  }
+  padding: 80px;
+
+  @media(max-width: 992px) {
+      display: none; 
+    } 
 `;
 
 export const Text = styled.p`

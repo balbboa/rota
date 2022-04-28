@@ -4,11 +4,14 @@ import {
   IconContainer,
   TitleContainer,
   Notification,
-  Text
+  Text,
+  LogoContainer
 } from "./Header.styles";
 import Image from 'next/image';
 import userPic from '../../public/user.png';
 import Bell from '../../public/bell.png';
+import Rota from '../../public/RotaWeb.png';
+
 
 type HeaderProps = {
   isOpened: boolean;
@@ -21,6 +24,14 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
       <IconContainer onClick={toggleDrawer}>
         {isOpened ? <ChevronLeft /> : <Menu />}
       </IconContainer>
+      <LogoContainer>
+        <Image
+          src={Rota}
+          alt="rota"
+          width={120}
+          height={23}
+          />
+      </LogoContainer>
       <TitleContainer>
       <Notification>
         <Image

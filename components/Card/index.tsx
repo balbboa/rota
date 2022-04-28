@@ -13,7 +13,7 @@ import { Container, CustomCard, TextCard } from './Card.styles';
 export default function DashboardCards() {
   return (
     <Container>
-    <Link href="/escalas" passHref >
+    <Link href="/escalas">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -23,14 +23,14 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Minhas Escalas
+                Escalas
             </TextCard>
         </CardContent>
         </Card>
         </CustomCard>
     </Link>
 
-    <Link href="/vales" passHref >
+    <Link href="/vales">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -40,14 +40,14 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Meus Vales
+                Vales
             </TextCard>
         </CardContent>
         </Card>
         </CustomCard>
     </Link>
 
-    <Link href="/diarias" passHref >
+    <Link href="/diarias">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -57,14 +57,14 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Minhas Diárias
+                Diárias
             </TextCard>
         </CardContent>
         </Card>
         </CustomCard>
     </Link>
 
-    <Link href="/marcacao" passHref >
+    <Link href="/marcacao">
         <CustomCard>
         <Card sx={{ maxWidth: 345 }}>
         <CardContent>
@@ -74,7 +74,7 @@ export default function DashboardCards() {
             width={80}
             height={80}/>
             <TextCard>
-                Marcação de DO
+                Marcar
             </TextCard>
         </CardContent>
         </Card>
