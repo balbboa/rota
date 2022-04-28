@@ -21,6 +21,7 @@ export const Content = styled.div`
 export const PageContainer = styled.div`
   @media(min-width: 992px) {   
     padding: 20px;
+    height: 100vh;
     width: 80vw;
     background-color: white;
     border-radius: 25px 0 0 0;
@@ -29,7 +30,8 @@ export const PageContainer = styled.div`
     padding: 20px;
     width: 100vw;
     background-color: white;
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 100vh;
   }
 
 `;
