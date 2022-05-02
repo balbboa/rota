@@ -1,4 +1,3 @@
-import type { NextPage } from "next";
 import Container from "../components/Container";
 import React from "react";
 import Button from '@mui/material/Button';
@@ -14,7 +13,7 @@ import axios from "axios";
 axios.defaults.headers.post['Accept'] = 'application/json'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
-const SignIn: NextPage =  () => {
+function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -30,7 +29,6 @@ const SignIn: NextPage =  () => {
         withCredentials: true
       }).then(res => {
         localStorage.setItem('auth_token', res.data.token);
-        console.log(res)
       }).catch(err => {
         console.log(err)
       })
@@ -40,7 +38,7 @@ const SignIn: NextPage =  () => {
 
   return (
     <Container title="Sign In">
-       <div>
+      <div>
        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>
         <section className="signinbg">
         <Box
@@ -94,13 +92,13 @@ const SignIn: NextPage =  () => {
                 </Link>
               </Grid>
             </Grid>
+            </Box>
           </Box>
-        </Box>    
         </section>
       </div>
     </Container>
   );
-};
+}
 
 export default SignIn;
 

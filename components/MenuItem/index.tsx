@@ -26,7 +26,7 @@ export default function MenuItem({
   return (
     <>
       <MenuItemContainer className={selected ? "selected" : ""} depth={depth}>
-        <Link href={url} passHref>
+        <Link href={url}>
           <div className="menu-item">
             <Icon />
             <span>{name}</span>

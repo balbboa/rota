@@ -1,24 +1,52 @@
 import styled from "styled-components";
 
 export const CardPanel = styled.div`
-    
   div {
     color: white;
     border-radius: 25px;
-    width: 780px;
-    height: 360px;
-    background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
-    background-position: right;
-    background-repeat: no-repeat;
-
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+  @media(min-width: 1400px) {     
+    div {
+      width: 780px;
+      height: 360px;
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-position: right;
+      background-repeat: no-repeat;     
+    }
+  }
+
+  @media(min-width: 992px) and (max-width: 1400px) {
+    div {
+      width: 780px;
+      height: 300px;
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-position: right;
+      background-repeat: no-repeat;  
+    } 
+  }
+
+  @media(max-width: 992px) {     
+    div {
+      color: white;
+      border-radius: 25px;
+      width: 330px;
+      height: 430px;
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-position: top left;
+      background-repeat: no-repeat;  
+    }
   }
 `;
 
 export const HeaderPanel = styled.h2`
   display: flex;
+
+  @media(min-width: 992px) and (max-width: 1400px) {
+    margin-top: 0;
+  }
 `;
 
 export const Container = styled.div`

@@ -8,10 +8,10 @@ import SignIn from "./signin";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      {/* <SignIn></SignIn> */}
-      <DashboardLayout>
+      <SignIn></SignIn>
+      {/* <DashboardLayout>
         <Component {...pageProps} />
-      </DashboardLayout>
+      </DashboardLayout> */}
     </ThemeProvider>
   );
 }

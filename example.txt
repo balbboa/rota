@@ -1,0 +1,42 @@
+POST - https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login
+
+Parâmetros
+
+-cpf
+-password
+
+retorno
+"success": true,
+    "data": {
+        "token": "1|string",
+        "nome": "string"
+    },
+    "message": "Conectado!"
+
+
+
+
+
+POST - https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas
+
+Parâmetros
+
+-inicio
+-termino
+-cpf
+
+Retorno
+
+{
+    "data": [
+        {
+            "titulo_escala": "string",
+            "prefixo_posto": "string",
+            "inicio": "string",
+            "termino": "string",
+            "local": "string",
+            "observacao": string,
+            "situacao": "string"
+        }
+	]
+}

@@ -61,7 +61,7 @@ const MENU_OPTIONS: MenuOption[] = [
     url: "/diarias",
   },
   {
-    name: "Marcação de DO",
+    name: "Marcar DO",
     icon: Person,
     url: "/marcacao",
   },

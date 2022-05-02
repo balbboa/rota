@@ -1,104 +1,77 @@
-import type { NextPage } from "next";
+import type { GetStaticProps } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import { Chip } from "@mui/material";
+import {  Button, Chip, TextField } from "@mui/material";
+import { Tittle } from "../components/Container/Container.Styles";
+import { Form } from "../components/Form/Form.Styles";
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'Código', type: 'number', width: 70 },
-  { field: 'unit', headerName: 'Unidade',  type: 'string', width: 100 },
-  { field: 'type', headerName: 'Tipo',  type: 'string', width: 250 },
-  { field: 'startDate', headerName: 'Data', type:'date', width: 130 },
-  { field: 'time', headerName: 'Duração',  type: 'dateTime', width: 70 },
-  { field: 'obs', headerName: 'Observação',  type: 'dateTime', width: 200 },
+  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 70 },
+  { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 100 },
+  { field: 'inicio', headerName: 'Início', type: 'date', width: 130 },
+  { field: 'termino', headerName: 'Término', type: 'date', width: 130 },
+  { field: 'local', headerName: 'Local', type: 'string', width: 130 },
+  { field: 'observacao', headerName: 'Observação', type: 'string', width: 100 },
   { 
-    field: 'situation', 
-    headerName: 'Situação' ,
+    field: 'situacao', 
+      headerName: 'Situação' ,
     renderCell: (params) => (
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
     width: 130,
-     
-    }
+   },
 ];
 
-const data = new Date()
+// export const getStaticProps: GetStaticProps = async () => {
+//   const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
+//   const data = await response.json();
 
-const rows = [
-  { 
-    id: 1, 
-    unit:'CPC',
-    type:'ORDINÁRIA',
-    startDate: new Date(),
-    time: data.getHours(),
-    situation:{ name:'Fiscalizada', color: 'success'},
-  },
-  { 
-    id: 5, 
-    unit:'CPC',
-    type:'ORDINÁRIA',
-    startDate: new Date(),
-    time: data.getHours(),
-    situation:{ name:'Fiscalizada', color: 'success'}, 
-  },
-  {
-    id: 2, 
-    unit:'CPC',
-    type:'ORDINÁRIA',
-    startDate: new Date(),
-    time: data.getHours(),
-    situation:{ name:'Concluída', color: 'info'},
-  },
-  { 
-    id: 3, 
-    unit:'CPC',
-    type:'ORDINÁRIA',
-    startDate: new Date(),
-    time: data.getHours(),
-    situation:{ name:'Digitando', color: 'error'},
-   },  
-   { 
-     id: 4, 
-     unit:'4º BPM',
-     type:'ORDINÁRIA',
-     startDate: new Date(),
-     time: data.getHours(),
-     situation:{ name:'Fiscalizada', color: 'success'},
+//   const rows = data.map(item => ({
+//     titulo_escala: item.titulo_escala, 
+//     prefixo_posto: item.prefixo_posto,
+//     inicio: item.inicio,
+//     termino: item.termino,
+//     local: item.local,
+//     observacao: item.observacao,
+//     situacao: item.situacao,
+//   }))
 
-    },
-    {
-      id: 6, 
-      unit:'11º BPM',
-      type:'ESPECIAL',
-      startDate: new Date(),
-      time: data.getHours(),
-      situation:{ name:'Concluída', color: 'info'}
-    },
-    { 
-      id: 7, 
-      unit:'2º BPM',
-      type:'EXTRAORDINÁRIA',
-      startDate: new Date(),
-      time: data.getHours(),
-      situation:{ name:'Digitando', color: 'error'},
-     },  
-     { 
-       id: 8, 
-       unit:'4º BPM',
-       type:'EXTRAORDINÁRIA',
-       startDate: new Date(),
-       time: data.getHours(),
-       situation:{ name:'Fiscalizada', color: 'success'},
-      },
-];
-const Escalas: NextPage = () => {
+//   return{
+//     props: {
+//       escalas: rows,
+//     }
+//   }
+// }
+
+function Escalas({ escalas }) {
+
   return (
     <Container title="Escalas">
-      <div>
-        <DataTable columns={columns} rows={rows} />
-      </div>
+      <Tittle>Minhas Escalas</Tittle>
+        <Form>
+              <TextField
+                name="inicio"
+                label="Início"
+                InputLabelProps={{ shrink: true, required: true }}
+                type="date"
+              />
+              <TextField
+                name="termino"
+                label="Término"
+                InputLabelProps={{ shrink: true, required: true }}
+                type="date"
+              />
+              <Button
+                type="submit"
+                variant="contained"
+              >
+                Consultar
+              </Button>
+        </Form>
+      {/* <DataTable columns={columns} rows={escalas} /> */}
     </Container>
   );
-};
+}
 
 export default Escalas;
