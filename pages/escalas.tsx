@@ -1,10 +1,10 @@
-import type { GetStaticProps } from "next";
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
 import {  Button, Chip, TextField } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
+import axios from "axios";
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 70 },
@@ -23,33 +23,68 @@ const columns: GridColDef[] = [
    },
 ];
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
-  const data = await response.json();
-
-  const rows = data.map(item => ({
-    titulo_escala: item.titulo_escala, 
-    prefixo_posto: item.prefixo_posto,
-    inicio: item.inicio,
-    termino: item.termino,
-    local: item.local,
-    observacao: item.observacao,
-    situacao: item.situacao,
-  }))
-
-  return{
-    props: {
-      escalas: rows,
-    }
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const date = {
+    inicio: data.get('inicio'),
+    termino: data.get('termino')
   }
-}
+  console.log(date)
+  
+  axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
+    {
+      headers:{
+      'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+    }
+    }).then(res => {
+
+      console.log(res.status)
+
+      // const rows = data.map(item => ({
+      //   titulo_escala: item.titulo_escala, 
+      //   prefixo_posto: item.prefixo_posto,
+      //   inicio: item.inicio,
+      //   termino: item.termino,
+      //   local: item.local,
+      //   observacao: item.observacao,
+      //   situacao: item.situacao,
+      // }))
+      
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+  };
+
+
+//   const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
+//   const data = await response.json();
+
+  // const rows = data.map(item => ({
+  //   titulo_escala: item.titulo_escala, 
+  //   prefixo_posto: item.prefixo_posto,
+  //   inicio: item.inicio,
+  //   termino: item.termino,
+  //   local: item.local,
+  //   observacao: item.observacao,
+  //   situacao: item.situacao,
+  // }))
+
+//   return{
+//     props: {
+//       escalas: rows,
+//     }
+//   }
+
 
 function Escalas({ escalas }) {
 
   return (
     <Container title="Escalas">
       <Tittle>Minhas Escalas</Tittle>
-        <Form>
+        <Form onSubmit={handleSubmit}>
               <TextField
                 name="inicio"
                 label="Início"
