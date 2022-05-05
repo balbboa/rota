@@ -24,10 +24,7 @@ function SignIn() {
 
 
   axios.get('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/sanctum/csrf-cookie').then(response => {
-      axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, {
-        params: obj, 
-        withCredentials: true
-      }).then(res => {
+      axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, obj).then(res => {
         localStorage.setItem('auth_token', res.data.token);
       }).catch(err => {
         console.log(err)
@@ -39,7 +36,7 @@ function SignIn() {
   return (
     <Container title="Sign In">
       <div>
-       <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"/>
+       <input type="hidden"/>
         <section className="signinbg">
         <Box
           sx={{

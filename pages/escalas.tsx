@@ -23,26 +23,26 @@ const columns: GridColDef[] = [
    },
 ];
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
-//   const data = await response.json();
+export const getStaticProps: GetStaticProps = async () => {
+  const response = await fetch('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas', {method: 'post'})
+  const data = await response.json();
 
-//   const rows = data.map(item => ({
-//     titulo_escala: item.titulo_escala, 
-//     prefixo_posto: item.prefixo_posto,
-//     inicio: item.inicio,
-//     termino: item.termino,
-//     local: item.local,
-//     observacao: item.observacao,
-//     situacao: item.situacao,
-//   }))
+  const rows = data.map(item => ({
+    titulo_escala: item.titulo_escala, 
+    prefixo_posto: item.prefixo_posto,
+    inicio: item.inicio,
+    termino: item.termino,
+    local: item.local,
+    observacao: item.observacao,
+    situacao: item.situacao,
+  }))
 
-//   return{
-//     props: {
-//       escalas: rows,
-//     }
-//   }
-// }
+  return{
+    props: {
+      escalas: rows,
+    }
+  }
+}
 
 function Escalas({ escalas }) {
 
@@ -69,7 +69,7 @@ function Escalas({ escalas }) {
                 Consultar
               </Button>
         </Form>
-      {/* <DataTable columns={columns} rows={escalas} /> */}
+      <DataTable columns={columns} rows={escalas} />
     </Container>
   );
 }
