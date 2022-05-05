@@ -3,16 +3,17 @@ import type { AppProps } from "next/app";
 import DashboardLayout from "../components/DashboardLayout/DashboardLayout";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
-import SignIn from "./signin";
+import { AuthProvider } from "../contexts/AuthContexet"
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <SignIn></SignIn>
-      {/* <DashboardLayout>
-        <Component {...pageProps} />
-      </DashboardLayout> */}
-    </ThemeProvider>
+    <AuthProvider >
+      <ThemeProvider theme={theme}>
+        <DashboardLayout>
+          <Component {...pageProps} />
+        </DashboardLayout>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 export default MyApp;
