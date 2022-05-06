@@ -28,7 +28,7 @@ export function AuthProvider({ children }) {
           localStorage.setItem('auth_token', res.data.data.token);
           setIsAuthenticated(true)
           setToken(res.data.data.token)
-          Router.push('/')
+          Router.push('/dashboard')
         }).catch(err => {
           console.log('post error: ', err)
         })
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('auth_token');
     setIsAuthenticated(false)
     setToken('')
-    Router.push('/signin')
+    Router.push('/')
   }
 
   return (
