@@ -24,3 +24,30 @@ export const SidebarContainer = styled.aside<SidebarContainerProps>`
     flex-direction: column;
   }
 `;
+
+export const Exit = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  font-size: 16px;
+  padding: 10px 0px 10px 10px;
+  padding: 20px;
+  margin: 25px;
+  color: #FF4842;
+  svg {
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: ${(props) => props.theme.colors.primary};
+    cursor: pointer;
+  }
+
+  &.selected {
+    background-color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.colors.textLight};
+    border-radius: 16px;
+  }
+`;

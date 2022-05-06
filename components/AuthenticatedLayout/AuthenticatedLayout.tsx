@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Header from "../Header";
 import Sidebar from "../Sidebar";
-import { Container, Content, PageContainer } from "./DashboardLayout.styles";
+import { Container, Content, PageContainer } from "./AuthenticatedLayout.styles";
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function AuthenticatedLayout({ children }: DashboardLayoutProps) {
   const [isOpened, setOpened] = useState(false);
   const toggleDrawer = () => {
     setOpened((prev) => !prev);

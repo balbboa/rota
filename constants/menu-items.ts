@@ -65,11 +65,11 @@ const MENU_OPTIONS: MenuOption[] = [
     icon: Person,
     url: "/marcacao",
   },
-  {
-    name: "Sair",
-    icon: ExitToApp,
-    url: "/login",
-  },
+  // {
+  //   name: "Sair",
+  //   icon: ExitToApp,
+  //   url: "/signin",
+  // },
 ];
 
 export type MenuItem = {

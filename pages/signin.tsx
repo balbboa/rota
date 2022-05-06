@@ -8,20 +8,36 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.headers.post['Accept'] = 'application/json'
+import { AuthContext } from "../contexts/AuthContexet"
+
+
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*"
+axios.defaults.headers.post['Access-Control-Allow-Credentials'] = true
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.post['Set-Cookie'] = true
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Accept'] = 'application/json'
+axios.defaults.withCredentials = true
 
 function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const {signIn} = React.useContext(AuthContext)
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
     const obj = {
-      cpf: data.get('cpf'),
-      password: data.get('password')
+      cpf: formData.get('cpf'),
+      password: formData.get('password')
+    }
+    const data = {
+      cpf: `${obj.cpf}`,
+      password: `${obj.password}`
     }
 
+<<<<<<< HEAD
 
   axios.get('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/sanctum/csrf-cookie').then(response => {
       axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, obj).then(res => {
@@ -31,12 +47,20 @@ function SignIn() {
       })
     });
 
+=======
+    await signIn(data)
+>>>>>>> feature/signin
   };
 
   return (
     <Container title="Sign In">
       <div>
+<<<<<<< HEAD
        <input type="hidden"/>
+=======
+        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+        <meta name="csrf-token" content="{{ csrf_token() }}"/>
+>>>>>>> feature/signin
         <section className="signinbg">
         <Box
           sx={{
@@ -98,8 +122,5 @@ function SignIn() {
 }
 
 export default SignIn;
-
-
-
 
 
