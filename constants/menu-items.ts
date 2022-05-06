@@ -12,7 +12,7 @@ const MENU_OPTIONS: MenuOption[] = [
   {
     name: "Início",
     icon: House,
-    url: "/",
+    url: "/dashboard",
   },
   {
     name: "Minhas Escalas",
