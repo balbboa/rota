@@ -30,7 +30,9 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     inicio: data.get('inicio'),
     termino: data.get('termino')
   }
+  
   console.log(date)
+  console.log(localStorage.getItem('auth_token'))
   
   axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
     {

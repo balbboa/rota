@@ -12,7 +12,6 @@ import axios from 'axios';
 
 import { AuthContext } from "../contexts/AuthContexet"
 
-
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*"
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = true
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -20,9 +19,6 @@ axios.defaults.headers.post['Set-Cookie'] = true
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Accept'] = 'application/json'
 axios.defaults.withCredentials = true
-
-
-
 
 function SignIn() {
 
