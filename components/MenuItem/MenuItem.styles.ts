@@ -34,7 +34,7 @@ export const MenuItemContainer = styled.a<{ depth: number }>`
     border-radius: 16px;
   }
 
-  :last-child {
+  /* :last-child {
     color: #FF4842;
-  }
+  } */
 `;
