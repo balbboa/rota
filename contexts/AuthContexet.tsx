@@ -25,12 +25,8 @@ export function AuthProvider({ children }) {
     try{
       await axios.get('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/sanctum/csrf-cookie').then(response => {
         axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, {cpf, password}).then(res => {
-          localStorage.setItem('auth_token', res.data.token);
-          console.log(res.data)
-          setCookie(undefined, 'auth_token', res.data.token, {
-            maxAge: 60*60*1 // 1 hour
-          })
-          isAuthenticated = !!res.data.token
+          localStorage.setItem('auth_token', res.data.data.token);
+          isAuthenticated = !!res.data.data.token
           Router.push('/')
         }).catch(err => {
           console.log('post error: ', err)

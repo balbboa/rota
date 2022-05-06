@@ -38,18 +38,6 @@ function SignIn() {
 
     await signIn(data)
 
-    // try{
-    //   await axios.get('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/sanctum/csrf-cookie').then(response => {
-    //     axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, obj).then(res => {
-    //       localStorage.setItem('auth_token', res.data.token);
-    //     }).catch(err => {
-    //       console.log('post error: ', err)
-    //     })
-    //   });
-    // }catch(err){
-    //   console.log(err)
-    // }
-
   };
 
   return (
