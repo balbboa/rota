@@ -5,6 +5,7 @@ export const Form = styled.form`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 1rem;
 
   & div{
     margin-right:10px;
