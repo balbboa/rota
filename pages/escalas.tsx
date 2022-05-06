@@ -43,7 +43,7 @@ function Escalas() {
         const c = res.data.data
 
         const rows = c.map(item => ({
-          internalId: Math.random(),
+          id: Math.random(),
           titulo_escala: item.titulo_escala, 
           prefixo_posto: item.prefixo_posto,
           inicio: item.inicio,

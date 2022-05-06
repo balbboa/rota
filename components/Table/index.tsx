@@ -32,7 +32,7 @@ export default function DataTable({columns, rows}:IParams) {
         columns={columns}
         autoHeight
         pageSize={10}
-        getRowId={(row) => row.internalId}
+        getRowId={(row) => row.id}
         rowsPerPageOptions={[10]}
         components={{
           Toolbar: CustomToolbar,
