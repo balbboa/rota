@@ -37,30 +37,14 @@ function SignIn() {
       password: `${obj.password}`
     }
 
-<<<<<<< HEAD
-
-  axios.get('https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/sanctum/csrf-cookie').then(response => {
-      axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/login`, obj).then(res => {
-        localStorage.setItem('auth_token', res.data.token);
-      }).catch(err => {
-        console.log(err)
-      })
-    });
-
-=======
     await signIn(data)
->>>>>>> feature/signin
   };
 
   return (
     <Container title="Sign In">
       <div>
-<<<<<<< HEAD
-       <input type="hidden"/>
-=======
         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
->>>>>>> feature/signin
         <section className="signinbg">
         <Box
           sx={{
