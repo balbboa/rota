@@ -9,7 +9,6 @@ export async function loadUser() {
   }) 
 
     const data = await res.data.json()
-    console.log(data)
 
     return data
   }
