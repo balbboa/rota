@@ -9,8 +9,11 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import Image from 'next/image';
+import Rota from '../public/RotaWeb.png';
 
-import { AuthContext } from "../contexts/AuthContexet"
+import { AuthContext } from "../contexts/AuthContext"
+import { BgSection, FormLogin } from "../components/Signin/Signin.styles";
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*"
@@ -42,21 +45,17 @@ function SignIn() {
 
   return (
     <Container title="Sign In">
-      <div>
-        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-        <meta name="csrf-token" content="{{ csrf_token() }}"/>
+      <BgSection>
+        <input type="hidden"/>
         <section className="signinbg">
-        <Box
-          sx={{
-            marginTop: 12,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Typography component="h1" variant="h2" color={'#FFFFFF'}>
-            RotaWeb
-          </Typography>
+        <FormLogin>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Image
+          src={Rota}
+          alt="rota"
+          width={240}
+          height={46}
+          />
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
@@ -76,11 +75,6 @@ function SignIn() {
               label="Senha"
               type="password"
               id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Lembrar"
             />
             <Button
               type="submit"
@@ -99,8 +93,9 @@ function SignIn() {
             </Grid>
             </Box>
           </Box>
+          </FormLogin>
         </section>
-      </div>
+      </BgSection>
     </Container>
   );
 }

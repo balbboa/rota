@@ -41,7 +41,7 @@ export const Exit = styled.div`
   }
 
   &:hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: #9c0d08;
     cursor: pointer;
   }
 

@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app'
 import React from 'react'
-import { AuthContext } from '../../contexts/AuthContexet'
+import { AuthContext } from '../../contexts/AuthContext'
 import AuthenticatedLayout from '../AuthenticatedLayout/AuthenticatedLayout'
 import NotAuthenticatedLayout from '../NotAuthenticatedLayout/NotAuthenticatedLayout'
 

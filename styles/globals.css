@@ -21,14 +21,7 @@ section {
   justify-content: center;
   display: flex;
 }
-.signinbg{
-  display: flex;
-  background: url("../public/not-authenticated-background.png");
-  height: 100vh;
-  min-height: 500px;
-  background-size: cover;
-  background-attachment: fixed;
-}
+
 form {
   color: aliceblue;
   justify-content: center;

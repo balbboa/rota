@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
-import { AuthProvider } from "../contexts/AuthContexet"
+import { AuthProvider } from "../contexts/AuthContext"
 import React from "react";
 import Routes from "../components/Routes";
 
