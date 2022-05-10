@@ -3,6 +3,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { HeaderPanel, CardContent, CardPanel, Container, TextCard } from './Panel.styles';
 
+// interface Perfil {
+//   usuario_nome_guerra: string,
+//   usuario_matricula: number,
+//   usuario_cpf: number,
+//   usuario_titulo: string
+// }
 
 export default function Panel(){
 
@@ -11,7 +17,6 @@ export default function Panel(){
   }, [])
 
   const [users, SetUsers] = useState<any[]>([])
-  const [loading, SetLoading] = useState(false)
 
   const loadUser = async () => {
     try {
@@ -21,36 +26,33 @@ export default function Panel(){
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
         }
       })
-      SetUsers(res.data.data)
+      SetUsers(res.data.data) 
       console.log(res.data.data)
-      SetLoading(true) 
   } catch (err){
     console.log(err) 
   } 
   }
+
 
   return (
   <Container>
     <HeaderPanel>Informações Pessoais</HeaderPanel><CardPanel>
         <Card sx={{ maxWidth: 1200 }}>
           <CardContent>
-            {loading && 
-            users.map((user) => (
             <>
               <TextCard>
-                {user.usuario_nome_guerra}
+                Nome de Guerra: {users.usuario_nome_guerra}
               </TextCard>
               <TextCard>
-                {user.usuario_matricula}
+                Matrícula: {users.usuario_matricula}
               </TextCard>
               <TextCard>
-                {user.usuario_cpf}
+                CPF: {users.usuario_cpf}
               </TextCard>
               <TextCard>
-                {user.usuario_titulo}
+                Graduação: {users.usuario_titulo}
               </TextCard>
             </>
-            ))}
           </CardContent>
         </Card>
       </CardPanel>

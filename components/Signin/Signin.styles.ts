@@ -5,7 +5,7 @@ export const BgSection = styled.div`
     min-height: 100%;
     background-size: cover;
     height: 100vh;
-    display:flex;
+    display: flex;
 
     section {
         margin:auto;
@@ -18,6 +18,10 @@ export const FormLogin = styled.div`
   justify-content: start;
   flex-direction: column;
   border-radius: 1rem;
-  padding: 3rem;
+  padding: 5rem;
   background-color: white;
+
+  @media(max-width: 992px) {  
+    padding: 3rem;
+  }
 `;
