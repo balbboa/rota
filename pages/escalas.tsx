@@ -1,7 +1,7 @@
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import {  Button, Chip, TextField } from "@mui/material";
+import {  Alert, Button, Chip, TextField } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
@@ -12,7 +12,7 @@ const columns: GridColDef[] = [
   { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 150 },
   { field: 'inicio', headerName: 'Início', type: 'date', width: 110 },
   { field: 'termino', headerName: 'Término', type: 'date', width: 110 },
-  { field: 'local', headerName: 'Local', type: 'string', width: 200 },
+  { field: 'local', headerName: 'Local', type: 'string', width: 180 },
   { field: 'observacao', headerName: 'Observação', type: 'string', width: 100 },
   { 
     field: 'situacao', 
@@ -31,6 +31,8 @@ type InputEscala = {
 
 function Escalas() {
   const [rows, setRows] = useState([])
+  const [erro, setErro] = useState<any>()
+  const [state, setState] = useState<boolean>()
 
   async function getEscalas(date: InputEscala) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
@@ -69,9 +71,12 @@ function Escalas() {
         })})
 
         setRows(rows)
+        setState(true)
 
       }).catch(err => {
-        console.log(err)
+        console.log(err.response.data)
+        setErro(err.response.data)
+        setState(false)      
       })
   }
 
@@ -108,7 +113,14 @@ function Escalas() {
                 Consultar
               </Button>
         </Form>
+
       <DataTable columns={columns} rows={rows}  />
+
+      {state == false ? (
+        <Alert sx={{ mt : 2}} variant="filled" severity="error">{erro?.msg}</Alert>
+        ) : (null)
+      }
+      
     </Container>
   );
 }
