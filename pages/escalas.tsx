@@ -16,7 +16,7 @@ const columns: GridColDef[] = [
   { field: 'observacao', headerName: 'Observação', type: 'string', width: 100 },
   { 
     field: 'situacao', 
-      headerName: 'Situação' ,
+    headerName: 'Situação' ,      
     renderCell: (params) => (
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
@@ -42,7 +42,21 @@ function Escalas() {
 
         const c = res.data.data
 
-        const rows = c.map(item => ({
+        const rows = c.map(item => {
+          let color = 'info'
+          if (item.situacao === 'Fiscalizada') {
+            color =  'success'
+          }
+          // if (item.situacao === 'Concluida') {
+          //   color =  'warning'
+          // }
+          if (item.situacao === 'Digitando') {
+            color =  'warning'
+          }
+          if (item.situacao === 'Cancelada') {
+            color =  'error'
+          }
+          return ({
           id: Math.random(),
           titulo_escala: item.titulo_escala, 
           prefixo_posto: item.prefixo_posto,
@@ -50,8 +64,9 @@ function Escalas() {
           termino: item.termino,
           local: item.local,
           observacao: item.observacao,
-          situacao: {name: item.situacao, color:'primary'},
-        }))
+          situacao: {name: item.situacao, color},
+          
+        })})
 
         setRows(rows)
 
