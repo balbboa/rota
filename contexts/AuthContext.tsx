@@ -2,7 +2,6 @@ import {createContext, useState} from "react"
 import axios from 'axios';
 import Router from 'next/router'
 
-
 type SignInData = {
   cpf: string;
   password: string;

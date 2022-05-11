@@ -25,7 +25,7 @@ function CustomToolbar() {
 
 export default function DataTable({columns, rows}:IParams) {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ width: '100%' }}>
       <DataGrid
         disableSelectionOnClick
         rows={rows}

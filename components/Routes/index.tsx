@@ -9,7 +9,6 @@ export default function Routes({ Component, pageProps }: AppProps) {
 
   const Layout = isAuthenticated ? AuthenticatedLayout : NotAuthenticatedLayout
 
-
   return (
     <Layout>
       <Component {...pageProps} />

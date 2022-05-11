@@ -3,12 +3,12 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { HeaderPanel, CardContent, CardPanel, Container, TextCard } from './Panel.styles';
 
-// interface Perfil {
-//   usuario_nome_guerra: string,
-//   usuario_matricula: number,
-//   usuario_cpf: number,
-//   usuario_titulo: string
-// }
+interface Perfil {
+  usuario_nome_guerra: string,
+  usuario_matricula: number,
+  usuario_cpf: number,
+  usuario_titulo: string
+}
 
 export default function Panel(){
 
@@ -16,7 +16,7 @@ export default function Panel(){
     loadUser()
   }, [])
 
-  const [users, SetUsers] = useState<any[]>([])
+  const [users, SetUsers] = useState<Perfil>()
 
   const loadUser = async () => {
     try {
@@ -27,7 +27,6 @@ export default function Panel(){
         }
       })
       SetUsers(res.data.data) 
-      console.log(res.data.data)
   } catch (err){
     console.log(err) 
   } 
@@ -41,16 +40,16 @@ export default function Panel(){
           <CardContent>
             <>
               <TextCard>
-                Nome de Guerra: {users.usuario_nome_guerra}
+                Nome de Guerra: {users?.usuario_nome_guerra}
               </TextCard>
               <TextCard>
-                Matrícula: {users.usuario_matricula}
+                Matrícula: {users?.usuario_matricula}
               </TextCard>
               <TextCard>
-                CPF: {users.usuario_cpf}
+                CPF: {users?.usuario_cpf}
               </TextCard>
               <TextCard>
-                Graduação: {users.usuario_titulo}
+                Graduação: {users?.usuario_titulo}
               </TextCard>
             </>
           </CardContent>
