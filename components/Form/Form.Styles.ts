@@ -16,9 +16,9 @@ export const Form = styled.form`
 
   @media(max-width: 992px) {  
     flex-direction: column;  
-
+    
     & div{
-      margin-top:10px;
+      margin-bottom: 10px;
     }
   }
 `;

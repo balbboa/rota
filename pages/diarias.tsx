@@ -8,15 +8,15 @@ import axios from "axios";
 import { Form } from "../components/Form/Form.Styles";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'number', width: 200 },
-  { field: 'data_diaria', headerName: 'Data',  type: 'string', width: 110 },
+  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 230 },
+  { field: 'data_diaria', headerName: 'Data',  type: 'string', width: 140 },
   { field: 'valor_diaria', headerName: 'Valor',  type: 'string', width: 80 },
-  { field: 'observacao_diaria', headerName: 'Observação', type:'date', width: 180 },
+  { field: 'observacao_diaria', headerName: 'Observação', type:'string', width: 180 },
   { 
     field: 'situacao_diaria', 
     headerName: 'Situação' ,
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="filled" color={params.value.color} />
+      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
     width: 200,
      
@@ -90,6 +90,10 @@ function Diarias() {
     await getDiarias(date)
   }
 
+  const curr = new Date();
+  curr.setDate(curr.getDate())
+  const date = curr.toLocaleDateString('en-CA');
+
   return (
     <Container title="Minhas Diárias">
       <Tittle>Minhas Diárias</Tittle>
@@ -100,6 +104,7 @@ function Diarias() {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <TextField
                 name="termino"

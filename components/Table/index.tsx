@@ -34,9 +34,6 @@ export default function DataTable({columns, rows}:IParams) {
         pageSize={10}
         getRowId={(row) => row.id}
         rowsPerPageOptions={[10]}
-        components={{
-          Toolbar: CustomToolbar,
-        }}
         localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
       />
     </div>
