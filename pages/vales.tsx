@@ -18,9 +18,9 @@ const columns: GridColDef[] = [
     field: 'situacao_vale', 
       headerName: 'Situação' ,
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
+      <Chip label={params.value.name} variant="filled" color={params.value.color} />
     ),
-    width: 130,
+    width: 200,
    },
 ];
 
@@ -45,7 +45,24 @@ function Vales() {
 
         const k = res.data.data
 
-        const rows = k.map(item => ({
+        const rows = k.map(item => {
+          let color = 'info'
+          if (item.situacao_vale === 'Gerado') {
+            color =  'primary'
+          }
+          if (item.situacao_vale === 'Glosado') {
+            color =  'error'
+          }
+          if (item.situacao_vale === 'Incluído na Remessa') {
+            color =  'warning'
+          }
+          if (item.situacao_vale === 'Incluído no Pedido') {
+            color =  'warning'
+          }
+          if (item.situacao_vale === 'Pago pelo banco') {
+            color =  'success'
+          }
+          return ({
           id: Math.random(),
           titulo_escala: item.titulo_escala, 
           prefixo_posto: item.prefixo_posto,
@@ -53,8 +70,8 @@ function Vales() {
           termino_posto: item.termino_posto,
           valor_vale_refeicao: item.valor_vale_refeicao,
           observacao: item.observacao,
-          situacao_vale: {name: item.situacao_vale, color:'primary'},
-        }))
+          situacao_vale: {name: item.situacao_vale, color},
+        })})
 
         setRows(rows)
         setState(true)

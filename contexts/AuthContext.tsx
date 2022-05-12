@@ -1,7 +1,6 @@
 import {createContext, useState} from "react"
 import axios from 'axios';
 import Router from 'next/router'
-
 import Snackbar from '@mui/material/Snackbar';
 import Alert from "@mui/material/Alert";
 
@@ -63,7 +62,7 @@ export function AuthProvider({ children }) {
 
   return (
    <>
-   <AuthContext.Provider value={{isAuthenticated, signIn, signOut}}>
+    <AuthContext.Provider value={{isAuthenticated, signIn, signOut}}>
       {children}
     </AuthContext.Provider>
 

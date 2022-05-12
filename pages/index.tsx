@@ -41,7 +41,7 @@ function SignIn() {
   };
 
   return (
-    <Container title="Sign In">
+    <Container title="RotaWeb">
       <BgSection>
         <input type="hidden"/>
         <section className="signinbg">
@@ -83,7 +83,7 @@ function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="https://www8.defesasocial.rn.gov.br/autenticador/index.xhtml" variant="body2">
                   Esqueceu a senha?
                 </Link>
               </Grid>

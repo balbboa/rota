@@ -18,7 +18,7 @@ const columns: GridColDef[] = [
     field: 'situacao', 
     headerName: 'Situação' ,      
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
+      <Chip label={params.value.name} variant="filled" color={params.value.color} />
     ),
     width: 130,
    },
@@ -49,9 +49,9 @@ function Escalas() {
           if (item.situacao === 'Fiscalizada') {
             color =  'success'
           }
-          // if (item.situacao === 'Concluida') {
-          //   color =  'warning'
-          // }
+          if (item.situacao === 'Publicada') {
+            color =  'primary'
+          }
           if (item.situacao === 'Digitando') {
             color =  'warning'
           }

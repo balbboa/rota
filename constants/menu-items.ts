@@ -60,11 +60,11 @@ const MENU_OPTIONS: MenuOption[] = [
     icon: AccountBalanceWallet,
     url: "/diarias",
   },
-  {
-    name: "Marcar DO",
-    icon: Person,
-    url: "/marcacao",
-  },
+  // {
+  //   name: "Marcar DO",
+  //   icon: Person,
+  //   url: "/marcacao",
+  // },
   // {
   //   name: "Sair",
   //   icon: ExitToApp,

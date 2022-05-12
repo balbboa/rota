@@ -16,9 +16,9 @@ const columns: GridColDef[] = [
     field: 'situacao_diaria', 
     headerName: 'Situação' ,
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
+      <Chip label={params.value.name} variant="filled" color={params.value.color} />
     ),
-    width: 130,
+    width: 200,
      
     },
 ];
@@ -44,14 +44,31 @@ function Diarias() {
 
         const x = res.data.data
 
-        const rows = x.map(item => ({
+        const rows = x.map(item => {
+          let color = 'info'
+          if (item.situacao_diaria === 'Gerada') {
+            color =  'primary'
+          }
+          if (item.situacao_diaria === 'Glosada') {
+            color =  'error'
+          }
+          if (item.situacao_diaria === 'Incluída na Remessa') {
+            color =  'warning'
+          }
+          if (item.situacao_diaria === 'Incluída no Pedido') {
+            color =  'warning'
+          }
+          if (item.situacao_diaria === 'Paga pelo banco') {
+            color =  'success'
+          }
+          return ({
           id: Math.random(),
           titulo_escala: item.titulo_escala, 
           data_diaria: item.data_diaria,
           valor_diaria: item.valor_diaria,
           observacao_diaria: item.observacao_diaria,
-          situacao_diaria: {name: item.situacao_diaria, color:'primary'},
-        }))
+          situacao_diaria: {name: item.situacao_diaria, color},
+        })})
 
         setRows(rows)
         setState(true)
