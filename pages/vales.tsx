@@ -4,7 +4,7 @@ import { GridColDef } from '@mui/x-data-grid';
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
 import { CustomSpan } from "../components/Table/Table.Styles";
@@ -55,6 +55,17 @@ function Vales() {
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
 
+  useLayoutEffect(() => {
+    const previewRows = sessionStorage.getItem('vales')
+    if (previewRows) {
+      const parse = JSON.parse(previewRows)
+      setRows(parse)
+    }
+  }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('vales', JSON.stringify(rows))
+  }, [rows])
 
   async function getVales(date: InputVale) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/meus_vales`, date,

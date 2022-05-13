@@ -5,7 +5,7 @@ import {  Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import withAuth from "../utils/withAuth";
 import { CustomSpan } from "../components/Table/Table.Styles";
 
@@ -57,9 +57,21 @@ type InputEscala = {
 }
 
 function Escalas() {
-  const [rows, setRows] = useState([])
+  const [rows, setRows] = useState<any>([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
+
+  useLayoutEffect(() => {
+    const previewRows = sessionStorage.getItem('escala')
+    if (previewRows) {
+      const parse = JSON.parse(previewRows)
+      setRows(parse)
+    }
+  }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('escala', JSON.stringify(rows))
+  }, [rows])
 
   async function getEscalas(date: InputEscala) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,

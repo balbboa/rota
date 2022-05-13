@@ -3,7 +3,7 @@ import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import axios from "axios";
 import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
@@ -47,6 +47,18 @@ function Diarias() {
   const [rows, setRows] = useState([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
+
+  useLayoutEffect(() => {
+    const previewRows = sessionStorage.getItem('diaria')
+    if (previewRows) {
+      const parse = JSON.parse(previewRows)
+      setRows(parse)
+    }
+  }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('diaria', JSON.stringify(rows))
+  }, [rows])
 
   async function getDiarias(date: InputDiarias) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_diarias`, date,

@@ -58,6 +58,7 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(false)
     setToken('')
     Router.push('/')
+    sessionStorage.clear()
   }
 
   return (
