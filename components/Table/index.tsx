@@ -12,17 +12,6 @@ interface IParams {
 
 }
 
-function CustomToolbar() {
-  return (
-    <GridToolbarContainer>
-      <GridToolbarColumnsButton touchRippleRef={undefined} />
-      <GridToolbarFilterButton components={undefined} />
-      {/* <GridToolbarDensitySelector />
-      <GridToolbarExport /> */}
-    </GridToolbarContainer>
-  );
-}
-
 export default function DataTable({columns, rows}:IParams) {
   return (
     <div style={{ width: '100%' }}>

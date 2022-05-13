@@ -1,26 +1,52 @@
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import {  Alert, Button, Chip, TextField } from "@mui/material";
+import {  Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
 import { useState } from "react";
+import { CustomSpan } from "../components/Table/Table.Styles";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 250 },
-  { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 150 },
-  { field: 'inicio', headerName: 'Início', type: 'date', width: 140 },
-  { field: 'termino', headerName: 'Término', type: 'date', width: 140 },
-  { field: 'local', headerName: 'Local', type: 'string', width: 220 },
-  { field: 'observacao', headerName: 'Observação', type: 'string', width: 160 },
+  { field: 'titulo_escala', flex: 1, headerName: 'Título', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  type: 'string', minWidth: 230 },
+  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  type: 'string' },
+  { field: 'inicio', flex: 1, headerName: 'Início', type: 'date', minWidth: 135 },
+  { field: 'termino', flex: 1, headerName: 'Término', type: 'date', minWidth: 135 },
+  { field: 'local', flex: 1, headerName: 'Local', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  type: 'string' },
+  { field: 'observacao', flex: 1, headerName: 'Observação', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  type: 'string' },
   { 
-    field: 'situacao', 
+    field: 'situacao',
+    flex: 1,  
     headerName: 'Situação' ,      
     renderCell: (params) => (
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
-    width: 110,
+    minWidth: 105
    },
 ];
 
@@ -110,6 +136,7 @@ function Escalas() {
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <Button
                 type="submit"
@@ -119,12 +146,14 @@ function Escalas() {
               </Button>
         </Form>
 
-      <DataTable columns={columns} rows={rows}  />
-
       {state == false ? (
-        <Alert sx={{ mt : 2}} variant="filled" severity="error">{erro?.msg}</Alert>
+        <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
         ) : (null)
       }
+
+      <DataTable columns={columns} rows={rows}  />
+
+      
       
     </Container>
   );
