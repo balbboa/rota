@@ -4,6 +4,7 @@ import DataTable from "../components/Table";
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { Tittle } from '../components/Container/Container.Styles';
+import withAuth from '../utils/withAuth';
 
 function Marcacao() {
   const [open, setOpen] = React.useState(false);
@@ -86,4 +87,4 @@ function Marcacao() {
   );
 }
 
-export default Marcacao;
+export default withAuth(Marcacao);

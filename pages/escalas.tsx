@@ -6,6 +6,7 @@ import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
 import { useState } from "react";
+import withAuth from "../utils/withAuth";
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 200 },
@@ -125,6 +126,6 @@ function Escalas() {
   );
 }
 
-export default Escalas;
+export default withAuth(Escalas);
 
 
