@@ -7,7 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
-import { CustomSpan } from "../components/Table/Table.styles";
+import { CustomSpan } from "../components/Table/Table.Styles";
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', 
