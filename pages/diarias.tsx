@@ -1,26 +1,39 @@
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import { Alert, Button, Chip, TextField } from "@mui/material";
+import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { useState } from "react";
 import axios from "axios";
 import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
+import { CustomSpan } from "../components/Table/Table.styles";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 230 },
-  { field: 'data_diaria', headerName: 'Data',  type: 'string', width: 140 },
-  { field: 'valor_diaria', headerName: 'Valor',  type: 'string', width: 80 },
-  { field: 'observacao_diaria', headerName: 'Observação', type:'string', width: 180 },
+  { field: 'titulo_escala', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  headerName: 'Título', type: 'string', minWidth: 230, flex: 1 },
+  { field: 'data_diaria', headerName: 'Data',  type: 'string', minWidth: 135, flex: 1 },
+  { field: 'valor_diaria', headerName: 'Valor',  type: 'string', minWidth: 80, flex: 1 },
+  { field: 'observacao_diaria', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  headerName: 'Observação', type:'string', flex: 1 },
   { 
     field: 'situacao_diaria', 
     headerName: 'Situação' ,
     renderCell: (params) => (
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
-    width: 200,
-     
+    minWidth: 105,
+    flex: 1
     },
 ];
 
@@ -112,6 +125,7 @@ function Diarias() {
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <Button
                 type="submit"
@@ -120,13 +134,14 @@ function Diarias() {
                 Consultar
               </Button>
         </Form>
+      
+      {state == false ? (
+        <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
+        ) : (null)
+      }
 
       <DataTable columns={columns} rows={rows} />
 
-      {state == false ? (
-        <Alert sx={{ mt : 2}} variant="filled" severity="error">{erro?.msg}</Alert>
-        ) : (null)
-      }
     </Container>
   );
 }

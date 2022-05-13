@@ -1,27 +1,47 @@
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import { Alert, Button, Chip, TextField } from "@mui/material";
+import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import axios from "axios";
 import { useState } from "react";
 import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
+import { CustomSpan } from "../components/Table/Table.styles";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 230 },
-  { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 150 },
-  { field: 'inicio_posto', headerName: 'Início', type: 'date', width: 140 },
-  { field: 'termino_posto', headerName: 'Término', type: 'date', width: 140 },
-  { field: 'valor_vale_refeicao', headerName: 'Valor', type: 'string', width: 80 },
-  { field: 'observacao', headerName: 'Observação', type: 'string', width: 230 },
+  { field: 'titulo_escala', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  headerName: 'Título', type: 'string', minWidth: 230 },
+  { field: 'prefixo_posto', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  headerName: 'Posto', type: 'string', flex: 1 },
+  { field: 'inicio_posto', headerName: 'Início', type: 'date', minWidth: 135, flex: 1 },
+  { field: 'termino_posto', headerName: 'Término', type: 'date', minWidth: 135, flex: 1 },
+  { field: 'valor_vale_refeicao', headerName: 'Valor', type: 'string', minWidth: 80, flex: 1 },
+  { field: 'observacao', 
+  renderCell: (params : any) => (
+    <Tooltip title={params.value}>
+        <CustomSpan>{params.value}</CustomSpan>
+    </Tooltip>
+  ),
+  headerName: 'Observação', type: 'string', flex: 1 },
   { 
     field: 'situacao_vale', 
       headerName: 'Situação' ,
     renderCell: (params) => (
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
-    width: 200,
+    minWidth: 105,
+    flex: 1
    },
 ];
 
@@ -115,6 +135,7 @@ function Vales() {
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <Button
                 type="submit"
@@ -124,12 +145,13 @@ function Vales() {
               </Button>
         </Form>
 
-      <DataTable columns={columns} rows={rows} />
-
       {state == false ? (
-        <Alert sx={{ mt : 2}} variant="filled" severity="error">{erro?.msg}</Alert>
+        <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
         ) : (null)
       }
+
+      <DataTable columns={columns} rows={rows} />
+
     </Container>
   );
 }
