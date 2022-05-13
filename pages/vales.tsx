@@ -9,17 +9,17 @@ import { Form } from "../components/Form/Form.Styles";
 import withAuth from "../utils/withAuth";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 200 },
+  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 230 },
   { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 150 },
-  { field: 'inicio_posto', headerName: 'Início', type: 'date', width: 110 },
-  { field: 'termino_posto', headerName: 'Término', type: 'date', width: 110 },
+  { field: 'inicio_posto', headerName: 'Início', type: 'date', width: 140 },
+  { field: 'termino_posto', headerName: 'Término', type: 'date', width: 140 },
   { field: 'valor_vale_refeicao', headerName: 'Valor', type: 'string', width: 80 },
-  { field: 'observacao', headerName: 'Observação', type: 'string', width: 180 },
+  { field: 'observacao', headerName: 'Observação', type: 'string', width: 230 },
   { 
     field: 'situacao_vale', 
       headerName: 'Situação' ,
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="filled" color={params.value.color} />
+      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
     width: 200,
    },
@@ -95,6 +95,10 @@ function Vales() {
     await getVales(date)
   }
 
+  const curr = new Date();
+  curr.setDate(curr.getDate())
+  const date = curr.toLocaleDateString('en-CA');
+
   return (
     <Container title="Meus Vales">
       <Tittle>Meus Vales</Tittle>
@@ -104,6 +108,7 @@ function Vales() {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <TextField
                 name="termino"

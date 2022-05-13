@@ -9,19 +9,19 @@ import { useState } from "react";
 import withAuth from "../utils/withAuth";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 200 },
+  { field: 'titulo_escala', headerName: 'Título', type: 'string', width: 250 },
   { field: 'prefixo_posto', headerName: 'Posto', type: 'string', width: 150 },
-  { field: 'inicio', headerName: 'Início', type: 'date', width: 110 },
-  { field: 'termino', headerName: 'Término', type: 'date', width: 110 },
-  { field: 'local', headerName: 'Local', type: 'string', width: 180 },
-  { field: 'observacao', headerName: 'Observação', type: 'string', width: 100 },
+  { field: 'inicio', headerName: 'Início', type: 'date', width: 140 },
+  { field: 'termino', headerName: 'Término', type: 'date', width: 140 },
+  { field: 'local', headerName: 'Local', type: 'string', width: 220 },
+  { field: 'observacao', headerName: 'Observação', type: 'string', width: 160 },
   { 
     field: 'situacao', 
     headerName: 'Situação' ,      
     renderCell: (params) => (
-      <Chip label={params.value.name} variant="filled" color={params.value.color} />
+      <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
-    width: 130,
+    width: 110,
    },
 ];
 
@@ -90,6 +90,10 @@ function Escalas() {
     }
     await getEscalas(date)
   }
+
+  const curr = new Date();
+  curr.setDate(curr.getDate())
+  const date = curr.toLocaleDateString('en-CA');
   
   return (
     <Container title="Escalas">
@@ -100,6 +104,7 @@ function Escalas() {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
+                defaultValue={date}
               />
               <TextField
                 name="termino"
