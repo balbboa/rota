@@ -1,13 +1,24 @@
 import Container from "../components/Container";
 import DataTable from "../components/Table";
 import { GridColDef } from '@mui/x-data-grid';
-import {  Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
+import {  Alert, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, TextField, Tooltip, Typography } from "@mui/material";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
 import withAuth from "../utils/withAuth";
 import { CustomSpan } from "../components/Table/Table.Styles";
+
+function Escalas() {
+
+const [open, setOpen] = useState(false);
+
+const handleClickOpen = () => {
+  setOpen(true);
+};
+const handleClose = () => {
+  setOpen(false);
+};
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', flex: 1, headerName: 'Título', 
@@ -26,20 +37,6 @@ const columns: GridColDef[] = [
   type: 'string' },
   { field: 'inicio', flex: 1, headerName: 'Início', type: 'date', minWidth: 135 },
   { field: 'termino', flex: 1, headerName: 'Término', type: 'date', minWidth: 135 },
-  { field: 'local', flex: 1, headerName: 'Local', 
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  type: 'string' },
-  { field: 'observacao', flex: 1, headerName: 'Observação', 
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  type: 'string' },
   { 
     field: 'situacao',
     flex: 1,  
@@ -49,14 +46,25 @@ const columns: GridColDef[] = [
     ),
     minWidth: 105
    },
+   { 
+    field: 'acao',
+    flex: 1,  
+    headerName: 'Ação' ,      
+    renderCell: (params) => (
+      <Chip label={'ACTION'} onClick={handleClickOpen} variant="outlined" />
+    ),
+    minWidth: 105
+   },
 ];
+
+
+
 
 type InputEscala = {
   inicio: string;
   termino: string;
 }
 
-function Escalas() {
   const [rows, setRows] = useState<any>([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
@@ -103,7 +111,7 @@ function Escalas() {
           prefixo_posto: item.prefixo_posto,
           inicio: item.inicio,
           termino: item.termino,
-          local: item.local,
+          local: item.local, 
           observacao: item.observacao,
           situacao: {name: item.situacao, color},
           
@@ -132,6 +140,21 @@ function Escalas() {
   const curr = new Date();
   curr.setDate(curr.getDate())
   const date = curr.toLocaleDateString('en-CA');
+
+
+  for (let i = 0; i < Object.keys(rows).length; i++) {
+    
+  } 
+  console.log(Object.keys(rows).length)
+
+  const listValues = rows.filter(id => rows.id === id).map(({titulo_escala, prefixo_posto, local, observacao}) => 
+    <ul key={titulo_escala}>
+      <li>{titulo_escala}</li>
+      <li>{prefixo_posto}</li>
+      <li>{local}</li> 
+      <li>{observacao}</li>
+    </ul> 
+  )
   
   return (
     <Container title="Escalas">
@@ -166,7 +189,26 @@ function Escalas() {
 
       <DataTable columns={columns} rows={rows}  />
 
-      
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {'Detalhes'}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {listValues}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            Voltar
+          </Button>
+        </DialogActions>
+      </Dialog>
       
     </Container>
   );
