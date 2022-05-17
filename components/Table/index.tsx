@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { 
+import {
   DataGrid,
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
+import * as React from 'react';
 interface IParams {
   columns: GridColDef[],
   rows: {}[]
