@@ -1,13 +1,13 @@
-import Container from "../components/Container";
-import DataTable from "../components/Table";
-import { GridColDef } from '@mui/x-data-grid';
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
-import { Tittle } from "../components/Container/Container.Styles";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
+import { useEffect, useLayoutEffect, useState } from "react";
+import Container from "../components/Container";
+import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
+import DataTable from "../components/Table";
+import { CustomSpan } from '../components/Table/Table.Styles';
 import withAuth from "../utils/withAuth";
-import { CustomSpan } from '../components/Table/Table.Styles'
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', 
@@ -19,13 +19,6 @@ const columns: GridColDef[] = [
   headerName: 'Título', type: 'string', minWidth: 230, flex: 1 },
   { field: 'data_diaria', headerName: 'Data',  type: 'string', minWidth: 135, flex: 1 },
   { field: 'valor_diaria', headerName: 'Valor',  type: 'string', minWidth: 80, flex: 1 },
-  { field: 'observacao_diaria', 
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  headerName: 'Observação', type:'string', flex: 1 },
   { 
     field: 'situacao_diaria', 
     headerName: 'Situação' ,

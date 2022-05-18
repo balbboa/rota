@@ -1,51 +1,75 @@
 import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from "@mui/material";
+import {
   DataGrid,
   GridCellParams,
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
-
-import { 
-  Button, 
-  Dialog, 
-  DialogActions, 
-  DialogContent, 
-  DialogContentText, 
-  DialogTitle 
-} from "@mui/material";
 import * as React from 'react';
+import { useState } from "react";
+import { TextModal } from "./Table.Styles";
+
 interface IParams {
   columns: GridColDef[],
   rows: {}[]
 }
 
+interface Escala {
+  titulo_escala: string,
+  local: string,
+  prefixo_posto: string,
+  inicio: string,
+  termino: string,  
+  situacao: {name:string},
+  observacao: string
+}
+
+interface Vale {
+  titulo_escala: string,
+  prefixo_posto: string,
+  inicio_posto: string,
+  termino_posto: string,  
+  situacao_vale: {name:string},
+  observacao: string,
+  valor_vale_refeicao: string
+}
+
+interface Diaria {
+  titulo_escala: string,
+  data_diaria: string,
+  observacao_diaria: string,
+  situacao_diaria: {name:string},
+  valor_diaria: string
+}
 
 export default function DataTable({columns, rows}:IParams) {
-  const [open, setOpen] = React.useState(false);
-  const [values, setValues] = React.useState('')
+  const [open, setOpen] = useState(false);
+  const [escala, setEscala] = useState<Escala>()
+  const [vale, setVale] = useState<Vale>()
+  const [diaria, setDiaria] = useState<Diaria>()
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleCellOpen = (params: GridCellParams) => {
     setOpen(true)
-    // console.log(params.row)
-    const response =
-      `Título: ${params.row.titulo_escala} 
-      Local: ${params.row.local}  
-      Posto: ${params.row.prefixo_posto} 
-      Início: ${params.row.inicio}
-      Término: ${params.row.termino}
-      Situacao: ${params.row.situacao.name}
-      Observação: ${params.row.observacao} 
-      `    
-    setValues(response)
+    const response = params.row
+    setEscala(response)
+    setVale(response)
+    setDiaria(response)
   }
 
+  console.log(diaria)
+  
   return (
     <div style={{ width: '100%' }}>
       <DataGrid
@@ -65,12 +89,40 @@ export default function DataTable({columns, rows}:IParams) {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">
-        {'Detalhes'}
-      </DialogTitle>
+      <DialogTitle id="alert-dialog-title">{'Detalhes'}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {values}
+          { escala?.situacao ? ( 
+            <>
+              <TextModal><span>Título:</span> {escala?.titulo_escala}</TextModal>
+              <TextModal><span>Posto:</span> {escala?.prefixo_posto}</TextModal>
+              <TextModal><span>Local:</span> {escala?.local}</TextModal>
+              <TextModal><span>Início:</span> {escala?.inicio}</TextModal>
+              <TextModal><span>Término:</span> {escala?.termino}</TextModal>
+              <TextModal><span>Situação:</span> {escala?.situacao.name}</TextModal>
+              <TextModal><span>Observação:</span> {escala?.observacao}</TextModal>
+            </>
+          ):('')}
+          { vale?.situacao_vale ? ( 
+            <>
+              <TextModal><span>Título:</span> {vale?.titulo_escala}</TextModal>
+              <TextModal><span>Posto:</span> {vale?.prefixo_posto}</TextModal>
+              <TextModal><span>Início:</span> {vale?.inicio_posto}</TextModal>
+              <TextModal><span>Término:</span> {vale?.termino_posto}</TextModal>
+              <TextModal><span>Valor:</span> {vale?.valor_vale_refeicao}</TextModal>
+              <TextModal><span>Situação:</span> {vale?.situacao_vale.name}</TextModal>
+              <TextModal><span>Observação:</span> {vale?.observacao}</TextModal>
+            </>
+          ):('')}
+          { diaria?.situacao_diaria ? ( 
+            <>
+              <TextModal><span>Título:</span> {diaria?.titulo_escala}</TextModal>
+              <TextModal><span>Data:</span> {diaria?.data_diaria}</TextModal>
+              <TextModal><span>Valor:</span> {diaria?.valor_diaria}</TextModal>
+              <TextModal><span>Situação:</span> {diaria?.situacao_diaria.name}</TextModal>
+              <TextModal><span>Observação:</span> {diaria?.observacao_diaria}</TextModal>
+            </>
+          ):('')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

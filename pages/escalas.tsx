@@ -1,4 +1,4 @@
-import { Alert, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Tooltip } from "@mui/material";
+import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
     </Tooltip>
   ),
   type: 'string', minWidth: 230 },
-  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', 
+  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', minWidth: 150,
   renderCell: (params : any) => (
     <Tooltip title={params.value}>
         <CustomSpan>{params.value}</CustomSpan>
@@ -44,9 +44,9 @@ type InputEscala = {
   termino: string;
 }
 
-  const [rows, setRows] = useState<any>([])
-  const [erro, setErro] = useState<any>()
-  const [state, setState] = useState<boolean>()
+const [rows, setRows] = useState<any>([])
+const [erro, setErro] = useState<any>()
+const [state, setState] = useState<boolean>()
 
 
   useEffect(() => {
@@ -100,12 +100,7 @@ type InputEscala = {
         setRows(rows)
         setState(true)
         
-      }).catch(err => {
-        console.log(err.response.data)
-        setErro(err.response.data)
-        setState(false)      
-      })
-  }
+      })}
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -120,6 +115,9 @@ type InputEscala = {
     
     await getEscalas(date)
   }
+  
+  
+
 
   const curr = new Date();
   curr.setDate(curr.getDate())
@@ -137,10 +135,6 @@ type InputEscala = {
       startDate =  today
       finalDate =  today
     }
-    
- 
-  // const startDate = previewStart ? previewStart : today
-  // const finalDate = previewFinal ? previewFinal : today
     
   return (
     <Container title="Escalas">

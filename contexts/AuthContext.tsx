@@ -1,8 +1,8 @@
-import {createContext, useState} from "react"
-import axios from 'axios';
-import Router from 'next/router'
-import Snackbar from '@mui/material/Snackbar';
 import Alert from "@mui/material/Alert";
+import Snackbar from '@mui/material/Snackbar';
+import axios from 'axios';
+import Router from 'next/router';
+import { createContext, useState } from "react";
 
 
 type SignInData = {
@@ -54,7 +54,7 @@ export function AuthProvider({ children }) {
   }
 
   function signOut(){
-    localStorage.removeItem('auth_token');
+    localStorage.clear();
     setIsAuthenticated(false)
     setToken('')
     Router.push('/')
