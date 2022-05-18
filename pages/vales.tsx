@@ -27,13 +27,6 @@ const columns: GridColDef[] = [
   { field: 'inicio_posto', headerName: 'Início', type: 'date', minWidth: 135, flex: 1 },
   { field: 'termino_posto', headerName: 'Término', type: 'date', minWidth: 135, flex: 1 },
   { field: 'valor_vale_refeicao', headerName: 'Valor', type: 'string', minWidth: 80, flex: 1 },
-  { field: 'observacao', 
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  headerName: 'Observação', type: 'string', flex: 1 },
   { 
     field: 'situacao_vale', 
       headerName: 'Situação' ,
