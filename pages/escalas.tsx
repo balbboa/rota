@@ -11,14 +11,7 @@ import { CustomSpan } from "../components/Table/Table.Styles";
 
 function Escalas() {
 
-const [open, setOpen] = useState(false);
 
-const handleClickOpen = () => {
-  setOpen(true);
-};
-const handleClose = () => {
-  setOpen(false);
-};
 
 const columns: GridColDef[] = [
   { field: 'titulo_escala', flex: 1, headerName: 'Título', 
@@ -45,16 +38,7 @@ const columns: GridColDef[] = [
       <Chip label={params.value.name} variant="outlined" color={params.value.color} />
     ),
     minWidth: 105
-   },
-   { 
-    field: 'acao',
-    flex: 1,  
-    headerName: 'Ação' ,      
-    renderCell: (params) => (
-      <Chip label={'ACTION'} onClick={handleClickOpen} variant="outlined" />
-    ),
-    minWidth: 105
-   },
+   }
 ];
 
 
@@ -141,21 +125,7 @@ type InputEscala = {
   curr.setDate(curr.getDate())
   const date = curr.toLocaleDateString('en-CA');
 
-
-  for (let i = 0; i < Object.keys(rows).length; i++) {
     
-  } 
-  console.log(Object.keys(rows).length)
-
-  const listValues = rows.filter(id => rows.id === id).map(({titulo_escala, prefixo_posto, local, observacao}) => 
-    <ul key={titulo_escala}>
-      <li>{titulo_escala}</li>
-      <li>{prefixo_posto}</li>
-      <li>{local}</li> 
-      <li>{observacao}</li>
-    </ul> 
-  )
-  
   return (
     <Container title="Escalas">
       <Tittle>Minhas Escalas</Tittle>
@@ -181,34 +151,13 @@ type InputEscala = {
                 Consultar
               </Button>
         </Form>
-
       {state == false ? (
         <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
         ) : (null)
       }
 
-      <DataTable columns={columns} rows={rows}  />
-
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {'Detalhes'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {listValues}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            Voltar
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <DataTable columns={columns} rows={rows}/>
+     
       
     </Container>
   );
