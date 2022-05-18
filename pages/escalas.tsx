@@ -1,13 +1,13 @@
-import Container from "../components/Container";
-import DataTable from "../components/Table";
+import { Alert, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Tooltip } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
-import {  Alert, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, TextField, Tooltip, Typography } from "@mui/material";
-import { Tittle } from "../components/Container/Container.Styles";
-import { Form } from "../components/Form/Form.Styles";
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
-import withAuth from "../utils/withAuth";
+import Container from "../components/Container";
+import { Tittle } from "../components/Container/Container.Styles";
+import { Form } from "../components/Form/Form.Styles";
+import DataTable from "../components/Table";
 import { CustomSpan } from "../components/Table/Table.Styles";
+import withAuth from "../utils/withAuth";
 
 function Escalas() {
 
@@ -55,6 +55,7 @@ type InputEscala = {
 
   useLayoutEffect(() => {
     const previewRows = sessionStorage.getItem('escala')
+
     if (previewRows) {
       const parse = JSON.parse(previewRows)
       setRows(parse)
@@ -103,7 +104,7 @@ type InputEscala = {
 
         setRows(rows)
         setState(true)
-
+        
       }).catch(err => {
         console.log(err.response.data)
         setErro(err.response.data)
@@ -118,12 +119,16 @@ type InputEscala = {
       inicio: `${data.get('inicio')}`,
       termino: `${data.get('termino')}`
     }
+    
+    sessionStorage.setItem('saveInitDate', date.inicio)
+    sessionStorage.setItem('saveFinalDate', date.termino)
+    
     await getEscalas(date)
   }
 
   const curr = new Date();
   curr.setDate(curr.getDate())
-  const date = curr.toLocaleDateString('en-CA');
+  const today = curr.toLocaleDateString('en-CA');
 
     
   return (
@@ -135,14 +140,14 @@ type InputEscala = {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={today}
               />
               <TextField
                 name="termino"
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={today}
               />
               <Button
                 type="submit"
@@ -157,7 +162,6 @@ type InputEscala = {
       }
 
       <DataTable columns={columns} rows={rows}/>
-     
       
     </Container>
   );
