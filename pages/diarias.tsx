@@ -58,7 +58,6 @@ function Diarias() {
       }).then(res => {
 
         const x = res.data.data
-
         const rows = x.map(item => {
           let color = 'info'
           if (item.situacao_diaria === 'Gerada') {
