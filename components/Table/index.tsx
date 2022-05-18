@@ -73,7 +73,7 @@ export default function DataTable({columns, rows}:IParams) {
   return (
     <div style={{ width: '100%' }}>
       <DataGrid
-        disableSelectionOnClick
+        disableSelectionOnClick={true}
         rows={rows}
         columns={columns}
         autoHeight

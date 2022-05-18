@@ -1,7 +1,7 @@
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
@@ -48,7 +48,6 @@ const [rows, setRows] = useState<any>([])
 const [erro, setErro] = useState<any>()
 const [state, setState] = useState<boolean>()
 
-
   useEffect(() => {
     const previewRows = sessionStorage.getItem('escala')
 
@@ -92,7 +91,7 @@ const [state, setState] = useState<boolean>()
           local: item.local, 
           observacao: item.observacao,
           situacao: {name: item.situacao, color},
-          
+      
         })})
 
         sessionStorage.setItem('escala', JSON.stringify(rows))
@@ -116,9 +115,6 @@ const [state, setState] = useState<boolean>()
     await getEscalas(date)
   }
   
-  
-
-
   const curr = new Date();
   curr.setDate(curr.getDate())
   const today = curr.toLocaleDateString('en-CA');
@@ -165,9 +161,8 @@ const [state, setState] = useState<boolean>()
         <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
         ) : (null)
       }
-
       <DataTable columns={columns} rows={rows}/>
-      
+
     </Container>
   );
 }

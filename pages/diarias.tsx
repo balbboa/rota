@@ -1,7 +1,7 @@
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
@@ -41,17 +41,13 @@ function Diarias() {
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const previewRows = sessionStorage.getItem('diaria')
     if (previewRows) {
       const parse = JSON.parse(previewRows)
       setRows(parse)
     }
   }, [])
-
-  useEffect(() => {
-    sessionStorage.setItem('diaria', JSON.stringify(rows))
-  }, [rows])
 
   async function getDiarias(date: InputDiarias) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_diarias`, date,
@@ -91,6 +87,7 @@ function Diarias() {
 
         setRows(rows)
         setState(true)
+        sessionStorage.setItem('diaria', JSON.stringify(rows))
 
       }).catch(err => {
         console.log(err.response.data)
@@ -106,12 +103,27 @@ function Diarias() {
       inicio: `${data.get('inicio')}`,
       termino: `${data.get('termino')}`
     }
+    sessionStorage.setItem('saveInitDate-Diaria', date.inicio)
+    sessionStorage.setItem('saveFinalDate-Diaria', date.termino)
     await getDiarias(date)
   }
 
   const curr = new Date();
   curr.setDate(curr.getDate())
-  const date = curr.toLocaleDateString('en-CA');
+  const today = curr.toLocaleDateString('en-CA');
+  let startDate 
+  let finalDate
+    try{
+      const previewStart =  sessionStorage.getItem('saveInitDate-Diaria')
+      const previewFinal =  sessionStorage.getItem('saveFinalDate-Diaria')
+
+      startDate = previewStart ? previewStart : today
+      finalDate = previewFinal ? previewFinal : today
+    }
+    catch {
+      startDate =  today
+      finalDate =  today
+    }
 
   return (
     <Container title="Minhas Diárias">
@@ -123,14 +135,14 @@ function Diarias() {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={startDate}
               />
               <TextField
                 name="termino"
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={finalDate}
               />
               <Button
                 type="submit"
