@@ -31,13 +31,31 @@ interface Escala {
   observacao: string
 }
 
+interface Vale {
+  titulo_escala: string,
+  prefixo_posto: string,
+  inicio_posto: string,
+  termino_posto: string,  
+  situacao_vale: {name:string},
+  observacao: string,
+  valor_vale_refeicao: string
+}
+
+interface Diaria {
+  titulo_escala: string,
+  data_diaria: string,
+  observacao_diaria: string,
+  situacao_diaria: {name:string},
+  valor_diaria: string
+}
+
 export default function DataTable({columns, rows}:IParams) {
   const [open, setOpen] = useState(false);
-  const [values, setValues] = useState<Escala>()
+  const [escala, setEscala] = useState<Escala>()
+  const [vale, setVale] = useState<Vale>()
+  const [diaria, setDiaria] = useState<Diaria>()
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -45,9 +63,13 @@ export default function DataTable({columns, rows}:IParams) {
   const handleCellOpen = (params: GridCellParams) => {
     setOpen(true)
     const response = params.row
-    setValues(response)
+    setEscala(response)
+    setVale(response)
+    setDiaria(response)
   }
-  console.log(values)
+
+  console.log(diaria)
+  
   return (
     <div style={{ width: '100%' }}>
       <DataGrid
@@ -67,18 +89,40 @@ export default function DataTable({columns, rows}:IParams) {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">
-        {'Detalhes'}
-      </DialogTitle>
+      <DialogTitle id="alert-dialog-title">{'Detalhes'}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-        <TextModal><span>Título:</span> {values?.titulo_escala}</TextModal>
-        <TextModal><span>Posto:</span> {values?.prefixo_posto}</TextModal>
-        <TextModal><span>Local:</span> {values?.local}</TextModal>
-        <TextModal><span>Início:</span> {values?.inicio}</TextModal>
-        <TextModal><span>Término:</span> {values?.termino}</TextModal>
-        <TextModal><span>Situação:</span> {values?.situacao.name}</TextModal>
-        <TextModal><span>Observação:</span> {values?.observacao}</TextModal>
+          { escala?.situacao ? ( 
+            <>
+              <TextModal><span>Título:</span> {escala?.titulo_escala}</TextModal>
+              <TextModal><span>Posto:</span> {escala?.prefixo_posto}</TextModal>
+              <TextModal><span>Local:</span> {escala?.local}</TextModal>
+              <TextModal><span>Início:</span> {escala?.inicio}</TextModal>
+              <TextModal><span>Término:</span> {escala?.termino}</TextModal>
+              <TextModal><span>Situação:</span> {escala?.situacao.name}</TextModal>
+              <TextModal><span>Observação:</span> {escala?.observacao}</TextModal>
+            </>
+          ):('')}
+          { vale?.situacao_vale ? ( 
+            <>
+              <TextModal><span>Título:</span> {vale?.titulo_escala}</TextModal>
+              <TextModal><span>Posto:</span> {vale?.prefixo_posto}</TextModal>
+              <TextModal><span>Início:</span> {vale?.inicio_posto}</TextModal>
+              <TextModal><span>Término:</span> {vale?.termino_posto}</TextModal>
+              <TextModal><span>Valor:</span> {vale?.valor_vale_refeicao}</TextModal>
+              <TextModal><span>Situação:</span> {vale?.situacao_vale.name}</TextModal>
+              <TextModal><span>Observação:</span> {vale?.observacao}</TextModal>
+            </>
+          ):('')}
+          { diaria?.situacao_diaria ? ( 
+            <>
+              <TextModal><span>Título:</span> {diaria?.titulo_escala}</TextModal>
+              <TextModal><span>Data:</span> {diaria?.data_diaria}</TextModal>
+              <TextModal><span>Valor:</span> {diaria?.valor_diaria}</TextModal>
+              <TextModal><span>Situação:</span> {diaria?.situacao_diaria.name}</TextModal>
+              <TextModal><span>Observação:</span> {diaria?.observacao_diaria}</TextModal>
+            </>
+          ):('')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>

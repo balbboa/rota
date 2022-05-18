@@ -1,23 +1,23 @@
-import Container from "../components/Container";
-import DataTable from "../components/Table";
-import { GridColDef } from '@mui/x-data-grid';
 import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
-import { Tittle } from "../components/Container/Container.Styles";
+import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
+import Container from "../components/Container";
+import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
-import withAuth from "../utils/withAuth";
+import DataTable from "../components/Table";
 import { CustomSpan } from "../components/Table/Table.Styles";
+import withAuth from "../utils/withAuth";
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', 
+  { field: 'titulo_escala', flex: 1,
   renderCell: (params : any) => (
     <Tooltip title={params.value}>
         <CustomSpan>{params.value}</CustomSpan>
     </Tooltip>
   ),
   headerName: 'Título', type: 'string', minWidth: 230 },
-  { field: 'prefixo_posto', 
+  { field: 'prefixo_posto', minWidth: 150,
   renderCell: (params : any) => (
     <Tooltip title={params.value}>
         <CustomSpan>{params.value}</CustomSpan>
