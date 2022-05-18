@@ -6,3 +6,11 @@ export const CustomSpan = styled.span`
     text-overflow: ellipsis;
 `;
 
+export const TextModal = styled.p`
+  margin-top: 10px;
+
+  span {
+    font-weight: bold;
+  }
+`;
+

@@ -1,28 +1,39 @@
 import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
+} from "@mui/material";
+import {
   DataGrid,
   GridCellParams,
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
-
-import { 
-  Button, 
-  Dialog, 
-  DialogActions, 
-  DialogContent, 
-  DialogContentText, 
-  DialogTitle 
-} from "@mui/material";
 import * as React from 'react';
+import { useState } from "react";
+import { TextModal } from "./Table.Styles";
+
 interface IParams {
   columns: GridColDef[],
   rows: {}[]
 }
 
+interface Escala {
+  titulo_escala: string,
+  local: string,
+  prefixo_posto: string,
+  inicio: string,
+  termino: string,  
+  situacao: {name:string},
+  observacao: string
+}
 
 export default function DataTable({columns, rows}:IParams) {
-  const [open, setOpen] = React.useState(false);
-  const [values, setValues] = React.useState('')
+  const [open, setOpen] = useState(false);
+  const [values, setValues] = useState<Escala>()
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,19 +44,10 @@ export default function DataTable({columns, rows}:IParams) {
 
   const handleCellOpen = (params: GridCellParams) => {
     setOpen(true)
-    // console.log(params.row)
-    const response =
-      `Título: ${params.row.titulo_escala} 
-      Local: ${params.row.local}  
-      Posto: ${params.row.prefixo_posto} 
-      Início: ${params.row.inicio}
-      Término: ${params.row.termino}
-      Situacao: ${params.row.situacao.name}
-      Observação: ${params.row.observacao} 
-      `    
+    const response = params.row
     setValues(response)
   }
-
+  console.log(values)
   return (
     <div style={{ width: '100%' }}>
       <DataGrid
@@ -70,7 +72,13 @@ export default function DataTable({columns, rows}:IParams) {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {values}
+        <TextModal><span>Título:</span> {values?.titulo_escala}</TextModal>
+        <TextModal><span>Posto:</span> {values?.prefixo_posto}</TextModal>
+        <TextModal><span>Local:</span> {values?.local}</TextModal>
+        <TextModal><span>Início:</span> {values?.inicio}</TextModal>
+        <TextModal><span>Término:</span> {values?.termino}</TextModal>
+        <TextModal><span>Situação:</span> {values?.situacao.name}</TextModal>
+        <TextModal><span>Observação:</span> {values?.observacao}</TextModal>
         </DialogContentText>
       </DialogContent>
       <DialogActions>

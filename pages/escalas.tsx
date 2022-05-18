@@ -1,4 +1,4 @@
-import { Alert, Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Tooltip } from "@mui/material";
+import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -21,7 +21,7 @@ const columns: GridColDef[] = [
     </Tooltip>
   ),
   type: 'string', minWidth: 230 },
-  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', 
+  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', minWidth: 150,
   renderCell: (params : any) => (
     <Tooltip title={params.value}>
         <CustomSpan>{params.value}</CustomSpan>
