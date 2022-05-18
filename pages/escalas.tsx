@@ -11,8 +11,6 @@ import withAuth from "../utils/withAuth";
 
 function Escalas() {
 
-
-
 const columns: GridColDef[] = [
   { field: 'titulo_escala', flex: 1, headerName: 'Título', 
   renderCell: (params : any) => (
@@ -41,9 +39,6 @@ const columns: GridColDef[] = [
    }
 ];
 
-
-
-
 type InputEscala = {
   inicio: string;
   termino: string;
@@ -53,18 +48,16 @@ type InputEscala = {
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
 
-  useLayoutEffect(() => {
+
+  useEffect(() => {
     const previewRows = sessionStorage.getItem('escala')
 
     if (previewRows) {
       const parse = JSON.parse(previewRows)
       setRows(parse)
     }
-  }, [])
 
-  useEffect(() => {
-    sessionStorage.setItem('escala', JSON.stringify(rows))
-  }, [rows])
+  },[])
 
   async function getEscalas(date: InputEscala) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
@@ -102,6 +95,8 @@ type InputEscala = {
           
         })})
 
+        sessionStorage.setItem('escala', JSON.stringify(rows))
+
         setRows(rows)
         setState(true)
         
@@ -120,8 +115,8 @@ type InputEscala = {
       termino: `${data.get('termino')}`
     }
     
-    sessionStorage.setItem('saveInitDate', date.inicio)
-    sessionStorage.setItem('saveFinalDate', date.termino)
+    sessionStorage.setItem('saveInitDate-Escalas', date.inicio)
+    sessionStorage.setItem('saveFinalDate-Escalas', date.termino)
     
     await getEscalas(date)
   }
@@ -129,7 +124,23 @@ type InputEscala = {
   const curr = new Date();
   curr.setDate(curr.getDate())
   const today = curr.toLocaleDateString('en-CA');
+  let startDate 
+  let finalDate
+    try{
+      const previewStart =  sessionStorage.getItem('saveInitDate-Escalas')
+      const previewFinal =  sessionStorage.getItem('saveFinalDate-Escalas')
 
+      startDate = previewStart ? previewStart : today
+      finalDate = previewFinal ? previewFinal : today
+    }
+    catch {
+      startDate =  today
+      finalDate =  today
+    }
+    
+ 
+  // const startDate = previewStart ? previewStart : today
+  // const finalDate = previewFinal ? previewFinal : today
     
   return (
     <Container title="Escalas">
@@ -140,14 +151,14 @@ type InputEscala = {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={today}
+                defaultValue={startDate}
               />
               <TextField
                 name="termino"
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={today}
+                defaultValue={finalDate}
               />
               <Button
                 type="submit"

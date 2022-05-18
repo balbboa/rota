@@ -55,17 +55,16 @@ function Vales() {
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
 
-  useLayoutEffect(() => {
+ 
+
+  useEffect(() => {
     const previewRows = sessionStorage.getItem('vales')
     if (previewRows) {
       const parse = JSON.parse(previewRows)
       setRows(parse)
     }
+    
   }, [])
-
-  useEffect(() => {
-    sessionStorage.setItem('vales', JSON.stringify(rows))
-  }, [rows])
 
   async function getVales(date: InputVale) {
     await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/meus_vales`, date,
@@ -107,6 +106,7 @@ function Vales() {
 
         setRows(rows)
         setState(true)
+        sessionStorage.setItem('vales', JSON.stringify(rows))
 
 
       }).catch(err => {
@@ -123,12 +123,27 @@ function Vales() {
       inicio: `${data.get('inicio')}`,
       termino: `${data.get('termino')}`
     }
+    sessionStorage.setItem('saveInitDate-Vales', date.inicio)
+    sessionStorage.setItem('saveFinalDate-Vales', date.termino)
     await getVales(date)
   }
 
   const curr = new Date();
   curr.setDate(curr.getDate())
-  const date = curr.toLocaleDateString('en-CA');
+  const today = curr.toLocaleDateString('en-CA');
+  let startDate 
+  let finalDate
+    try{
+      const previewStart =  sessionStorage.getItem('saveInitDate-Vales')
+      const previewFinal =  sessionStorage.getItem('saveFinalDate-Vales')
+
+      startDate = previewStart ? previewStart : today
+      finalDate = previewFinal ? previewFinal : today
+    }
+    catch {
+      startDate =  today
+      finalDate =  today
+    }
 
   return (
     <Container title="Meus Vales">
@@ -139,14 +154,14 @@ function Vales() {
                 label="Início"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={startDate}
               />
               <TextField
                 name="termino"
                 label="Término"
                 InputLabelProps={{ shrink: true, required: true }}
                 type="date"
-                defaultValue={date}
+                defaultValue={finalDate}
               />
               <Button
                 type="submit"
