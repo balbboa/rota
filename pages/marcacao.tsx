@@ -142,8 +142,8 @@ function Marcacao() {
           {"Requisitos Obrigatórios para Marcar esta Diária"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            <h4>Termo de Condições e Responsabilidades</h4>
+          <h4>Termo de Condições e Responsabilidades</h4>
+          <DialogContentText id="alert-dialog-description"> 
             <ul>
               <li>A diária operacional é de caráter voluntário, contudo, após confirmar sua voluntariedade para o serviço, o agente ficará na responsabilidade para o cumprimento, podendo este, na sua ausência, trazer prejuízo ao serviço.</li>
               <li>O voluntário deverá apresentar-se ao serviço no local e horário informado, com o Uniforme e equipamentos adequados.</li>
@@ -152,9 +152,15 @@ function Marcacao() {
               <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
             </ul>
           </DialogContentText>
+          <TextField
+            fullWidth
+            name="termo"
+            label="Assinatura"
+            type="text"
+          />
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" onClick={handleClose}>Confirmar</Button>
+          <Button disabled variant="contained" onClick={handleClose}>Confirmar</Button>
           <Button onClick={handleClose} autoFocus>
             Cancelar
           </Button>
