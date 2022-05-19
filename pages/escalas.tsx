@@ -1,4 +1,4 @@
-import { Alert, Button, Chip, TextField, Tooltip } from "@mui/material";
+import { Alert, Button, Chip, TextField } from "@mui/material";
 import { GridColDef } from '@mui/x-data-grid';
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,26 +6,13 @@ import Container from "../components/Container";
 import { Tittle } from "../components/Container/Container.Styles";
 import { Form } from "../components/Form/Form.Styles";
 import DataTable from "../components/Table";
-import { CustomSpan } from "../components/Table/Table.Styles";
 import withAuth from "../utils/withAuth";
 
 function Escalas() {
 
 const columns: GridColDef[] = [
-  { field: 'titulo_escala', flex: 1, headerName: 'Título', 
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  type: 'string', minWidth: 230 },
-  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', minWidth: 150,
-  renderCell: (params : any) => (
-    <Tooltip title={params.value}>
-        <CustomSpan>{params.value}</CustomSpan>
-    </Tooltip>
-  ),
-  type: 'string' },
+  { field: 'titulo_escala', flex: 1, headerName: 'Título', type: 'string', minWidth: 230 },
+  { field: 'prefixo_posto', flex: 1, headerName: 'Posto', minWidth: 150, type: 'string' },
   { field: 'inicio', flex: 1, headerName: 'Início', type: 'date', minWidth: 135 },
   { field: 'termino', flex: 1, headerName: 'Término', type: 'date', minWidth: 135 },
   { 
@@ -68,7 +55,9 @@ const [state, setState] = useState<boolean>()
 
         const c = res.data.data
 
-        const rows = c.map(item => {
+        const rows = c
+          .filter(item => item.situacao !== 'Cancelada')
+          .map(item => {
           let color = 'info'
           if (item.situacao === 'Fiscalizada') {
             color =  'success'
@@ -79,9 +68,7 @@ const [state, setState] = useState<boolean>()
           if (item.situacao === 'Digitando') {
             color =  'warning'
           }
-          if (item.situacao === 'Cancelada') {
-            color =  'error'
-          }
+
           return ({
           id: Math.random(),
           titulo_escala: item.titulo_escala, 
