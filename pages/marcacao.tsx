@@ -1,5 +1,6 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import { Alert, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import axios from "axios";
 import * as React from 'react';
 import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
@@ -7,7 +8,16 @@ import { Form } from "../components/Form/Form.Styles";
 import DataTable from "../components/Table";
 import withAuth from '../utils/withAuth';
 
+type InputMarcacao = {
+  inicio: string;
+  termino: string;
+  unidade: string;
+}
+
 function Marcacao() {
+  const [rows, setRows] = React.useState<any>([])
+  const [erro, setErro] = React.useState<any>()
+  const [state, setState] = React.useState<boolean>()
   const [open, setOpen] = React.useState(false);
   const [btnDisabled, setBtnDisabled] = React.useState(true)
 
@@ -40,7 +50,7 @@ function Marcacao() {
     }
   ];
 
-  const rows = [
+  const rows1 = [
     {
       id: 1,
       unit: 'CPC',
@@ -63,18 +73,50 @@ function Marcacao() {
     },
   ];
 
+  async function getMarcacao(date: InputMarcacao) {
+    await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
+      {
+        headers:{
+        'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+      }
+      }).then(res => {
+
+        const c = res.data.data
+
+        const rows = c
+          .map(item => {
+
+          return ({
+          id: Math.random(),
+          unidade: item.unidade, 
+          prefixo: item.prefixo,
+          inicio: item.inicio,
+          termino: item.termino,
+          local: item.local, 
+          funcao: item.funcao,
+      
+        })})
+
+        sessionStorage.setItem('marcacao', JSON.stringify(rows))
+
+        setRows(rows)
+        setState(true)
+        
+      })}
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const date = {
       inicio: `${data.get('inicio')}`,
-      termino: `${data.get('termino')}`
+      termino: `${data.get('termino')}`,
+      unidade: `${data.get('unidade')}`
     }
-    
+        
     sessionStorage.setItem('saveInitDate-Marcacao', date.inicio)
     sessionStorage.setItem('saveFinalDate-Marcacao', date.termino)
     
-    // await getEscalas(date)
+    await getMarcacao(date)
   }
 
   const curr = new Date();
@@ -93,6 +135,8 @@ function Marcacao() {
       startDate =  today
       finalDate =  today
     }
+
+  const hour = curr.getHours();    
 
   return (
     <Container title="Marcação de DO">
@@ -127,12 +171,12 @@ function Marcacao() {
                 Consultar
               </Button>
         </Form>
-        {/* {state == false ? (
+        {state == false ? (
           <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
           ) : (null)
-        } */}
+        }
 
-      <DataTable columns={columns} rows={rows} />
+      <DataTable columns={columns} rows={rows1} />
       <Dialog
         open={open}
         onClose={handleClose}
