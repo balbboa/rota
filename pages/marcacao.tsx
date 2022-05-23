@@ -6,6 +6,7 @@ import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
 import { Form } from "../components/Form/Form.Styles";
 import DataTable from "../components/Table";
+import { AgreeSpan } from "../components/Table/Table.Styles";
 import withAuth from '../utils/withAuth';
 
 type InputMarcacao = {
@@ -17,6 +18,7 @@ type InputMarcacao = {
 function Marcacao() {
   const [rows, setRows] = React.useState<any>([])
   const [erro, setErro] = React.useState<any>()
+  const [agree, setAgree] = React.useState<any>()
   const [state, setState] = React.useState<boolean>()
   const [open, setOpen] = React.useState(false);
   const [btnDisabled, setBtnDisabled] = React.useState(true)
@@ -135,9 +137,11 @@ function Marcacao() {
       startDate =  today
       finalDate =  today
     }
-
-  const hour = curr.getHours();    
-
+  
+  let hour = curr.getHours();
+  const string1 = "eu concordo";
+  const string2 = "estou ciente";
+  
   return (
     <Container title="Marcação de DO">
       <Tittle>Marcação de Diárias Operacionais</Tittle>
@@ -195,6 +199,7 @@ function Marcacao() {
               <li>É de responsabilidade do voluntário verificar no sistema RotaWeb (menu Minhas Escalas) se não há nenhum choque de horário entre os serviços, para o qual foi escalado, fiscalizado ou voluntário, e informar, o mais breve possível, alterações que o mesmo identificar à administração da sua Unidade.</li>
               <li>O voluntário ao marcar uma Diária Opercional no sistema RotaWeb declara estar ciente dos requisitos exigidos para o serviço e que atende os mesmos sem ressalvas.</li>
               <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
+              <li>Digite <AgreeSpan>{string1}</AgreeSpan> para prosseguir</li>
             </ul>
           </DialogContentText>
           <TextField
@@ -203,7 +208,7 @@ function Marcacao() {
             label="Assinatura"
             type="text"
             onChange={(e) => {
-              if(e.target.value==="eu concordo"){ setBtnDisabled(false) } 
+              if(e.target.value == string1){ setBtnDisabled(false) } 
               else{ setBtnDisabled(true) } 
             }}
           />
