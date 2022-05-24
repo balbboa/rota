@@ -76,8 +76,6 @@ export default function DataTable({columns, rows}:IParams) {
     setDiaria(response)
     setMarcacao(response)
   }
-
-  console.log(diaria)
   
   return (
     <div style={{ width: '100%', height: '100%' }}>

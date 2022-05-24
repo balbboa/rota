@@ -5,8 +5,8 @@ import * as React from 'react';
 import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
 import { Form } from "../components/Form/Form.Styles";
-import DataTable from "../components/Table";
-import { AgreeSpan } from "../components/Table/Table.Styles";
+import DataTable2 from "../components/TableMarcacaoDO";
+import { AgreeSpan } from "../components/TableMarcacaoDO/TableMarcacaoDO.Styles";
 import withAuth from '../utils/withAuth';
 
 type InputMarcacao = {
@@ -18,16 +18,17 @@ type InputMarcacao = {
 function Marcacao() {
   const [rows, setRows] = React.useState<any>([])
   const [erro, setErro] = React.useState<any>()
-  const [agree, setAgree] = React.useState<any>()
   const [state, setState] = React.useState<boolean>()
   const [open, setOpen] = React.useState(false);
   const [btnDisabled, setBtnDisabled] = React.useState(true)
+  
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+    setBtnDisabled(true);
   };
 
   const columns: GridColDef[] = [
@@ -76,7 +77,7 @@ function Marcacao() {
   ];
 
   async function getMarcacao(date: InputMarcacao) {
-    await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_escalas`, date,
+    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_escalas`, date,
       {
         headers:{
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
@@ -139,9 +140,9 @@ function Marcacao() {
     }
   
   let hour = curr.getHours();
-  const string1 = "eu concordo";
-  const string2 = "estou ciente";
-  
+  // let string1 = [ "eu concordo", "estou ciente", "estou de acordo"]
+  let string1 = 'eu concordo'  
+
   return (
     <Container title="Marcação de DO">
       <Tittle>Marcação de Diárias Operacionais</Tittle>
@@ -180,7 +181,7 @@ function Marcacao() {
           ) : (null)
         }
 
-      <DataTable columns={columns} rows={rows1} />
+      <DataTable2 columns={columns} rows={rows1} />
       <Dialog
         open={open}
         onClose={handleClose}
