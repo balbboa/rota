@@ -1,6 +1,5 @@
 import {
-  AccountBalanceWallet, House,
-  InsertInvitation,
+  AccountBalanceWallet, House, InsertInvitation,
   LocalDining
 } from "@styled-icons/material";
 import React from "react";

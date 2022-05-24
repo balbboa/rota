@@ -1,9 +1,9 @@
-import * as React from 'react'
-import Container from "../components/Container";
-import DataTable from "../components/Table";
-import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import * as React from 'react';
+import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
+import DataTable from "../components/Table";
 import withAuth from '../utils/withAuth';
 
 function Marcacao() {
@@ -17,13 +17,13 @@ function Marcacao() {
   };
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'Código', type: 'number', width: 70 },
-    { field: 'unit', headerName: 'UNIDADE', type: 'string', width: 100 },
-    { field: 'startDate', headerName: 'Data e Hora Inicial', type: 'dateTime', width: 300 },
-    { field: 'qtd', headerName: 'Quantidade de Diarias', type: 'number', width: 130 },
+    { field: 'id', headerName: 'Código', type: 'number', minWidth: 70, flex:1 },
+    { field: 'unit', headerName: 'Unidade', type: 'string', minWidth: 100, flex:1 },
+    { field: 'startDate', headerName: 'Data e Hora Inicial', type: 'dateTime', minWidth: 160, flex:1 },
+    { field: 'qtd', headerName: 'Quantidade', type: 'number', minWidth: 100, flex:1 },
     {
       field: 'op',
-      headerName: 'Opções',
+      headerName: 'Opções', flex:1, minWidth: 100,
       renderCell: (params: GridRenderCellParams<Date>) => (
         <Button
           variant="contained"

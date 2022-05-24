@@ -49,12 +49,20 @@ interface Diaria {
   valor_diaria: string
 }
 
+interface Marcacao {
+  codigo: number,
+  unidade: string,
+  data_marcacao: string,
+  quantidade: string,
+  opcoes: string
+}
+
 export default function DataTable({columns, rows}:IParams) {
   const [open, setOpen] = useState(false);
   const [escala, setEscala] = useState<Escala>()
   const [vale, setVale] = useState<Vale>()
   const [diaria, setDiaria] = useState<Diaria>()
-
+  const [marcacao, setMarcacao] = useState<Marcacao>()
 
   const handleClose = () => {
     setOpen(false);
@@ -66,6 +74,7 @@ export default function DataTable({columns, rows}:IParams) {
     setEscala(response)
     setVale(response)
     setDiaria(response)
+    setMarcacao(response)
   }
 
   console.log(diaria)
@@ -121,6 +130,15 @@ export default function DataTable({columns, rows}:IParams) {
               <TextModal><span>Valor:</span> {diaria?.valor_diaria}</TextModal>
               <TextModal><span>Situação:</span> {diaria?.situacao_diaria.name}</TextModal>
               <TextModal><span>Observação:</span> {diaria?.observacao_diaria}</TextModal>
+            </>
+          ):('')}
+          { marcacao?.data_marcacao ? ( 
+            <>
+              <TextModal><span>Código:</span> {marcacao?.codigo}</TextModal>
+              <TextModal><span>Unidade:</span> {marcacao?.unidade}</TextModal>
+              <TextModal><span>Data e Hora:</span> {marcacao?.data_marcacao}</TextModal>
+              <TextModal><span>Quantidade:</span> {marcacao?.quantidade}</TextModal>
+              <TextModal><span>Opções:</span> {marcacao?.opcoes}</TextModal>
             </>
           ):('')}
         </DialogContentText>

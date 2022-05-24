@@ -29,6 +29,10 @@ export const LogoContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+  img {
+    width: 120px !important;
+    height: 23px !important;
+  }
   padding: 80px;
 
   @media(max-width: 992px) {
