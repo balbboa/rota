@@ -5,8 +5,8 @@ import * as React from 'react';
 import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
 import { Form } from "../components/Form/Form.Styles";
-import DataTable2 from "../components/TableMarcacaoDO";
-import { AgreeSpan, CustomDiv } from "../components/TableMarcacaoDO/TableMarcacaoDO.Styles";
+import DataTable from "../components/Table";
+import { AgreeSpan } from "../components/Table/Table.Styles";
 import withAuth from '../utils/withAuth';
 
 type InputMarcacao = {
@@ -18,6 +18,7 @@ type InputMarcacao = {
 function Marcacao() {
   const [rows, setRows] = React.useState<any>([])
   const [erro, setErro] = React.useState<any>()
+  const [agree, setAgree] = React.useState<any>(0)
   const [state, setState] = React.useState<boolean>()
   const [open, setOpen] = React.useState(false);
   const [btnDisabled, setBtnDisabled] = React.useState(true)
@@ -28,7 +29,7 @@ function Marcacao() {
   };
   const handleClose = () => {
     setOpen(false);
-    setBtnDisabled(true);
+    setBtnDisabled(true)
   };
 
   const columns: GridColDef[] = [
@@ -180,9 +181,8 @@ function Marcacao() {
           <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
           ) : (null)
         }
-      <CustomDiv>
-        <DataTable2 columns={columns} rows={rows1} />
-      </CustomDiv>
+
+      <DataTable columns={columns} rows={rows1} />
       <Dialog
         open={open}
         onClose={handleClose}
