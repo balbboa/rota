@@ -6,7 +6,7 @@ import Container from "../components/Container";
 import { Tittle } from '../components/Container/Container.Styles';
 import { Form } from "../components/Form/Form.Styles";
 import DataTable2 from "../components/TableMarcacaoDO";
-import { AgreeSpan } from "../components/TableMarcacaoDO/TableMarcacaoDO.Styles";
+import { AgreeSpan, CustomDiv } from "../components/TableMarcacaoDO/TableMarcacaoDO.Styles";
 import withAuth from '../utils/withAuth';
 
 type InputMarcacao = {
@@ -180,8 +180,9 @@ function Marcacao() {
           <Alert sx={{ my : 2}} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
           ) : (null)
         }
-
-      <DataTable2 columns={columns} rows={rows1} />
+      <CustomDiv>
+        <DataTable2 columns={columns} rows={rows1} />
+      </CustomDiv>
       <Dialog
         open={open}
         onClose={handleClose}
