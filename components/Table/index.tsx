@@ -146,11 +146,12 @@ export default function DataTable({ columns, rows }: IParams) {
             ) : ('')}
             {marcacao?.data_marcacao ? (
               <>
-                <TextModal><span>Código:</span> {marcacao?.codigo}</TextModal>
+                <TextModal><span>Ordem:</span> {marcacao?.ordem}</TextModal>
                 <TextModal><span>Unidade:</span> {marcacao?.unidade}</TextModal>
-                <TextModal><span>Data e Hora:</span> {marcacao?.data_marcacao}</TextModal>
-                <TextModal><span>Quantidade:</span> {marcacao?.quantidade}</TextModal>
-                <TextModal><span>Opções:</span> {marcacao?.opcoes}</TextModal>
+                <TextModal><span>Início:</span> {marcacao?.inicio}</TextModal>
+                <TextModal><span>Termino:</span> {marcacao?.termino}</TextModal>
+                <TextModal><span>Local:</span> {marcacao?.local}</TextModal>
+                <TextModal><span>Função:</span> {marcacao?.funcao}</TextModal>
                 <Button
                   variant="contained"
                   color="primary"
