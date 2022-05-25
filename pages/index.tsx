@@ -1,16 +1,16 @@
-import Container from "../components/Container";
-import React from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Image from 'next/image';
+import React from "react";
+import Container from "../components/Container";
+import { BgSection, FormLogin } from "../components/Signin/Signin.styles";
+import { AuthContext } from "../contexts/AuthContext";
 import Rota from '../public/RotaWeb.png';
 
-import { AuthContext } from "../contexts/AuthContext"
-import { BgSection, FormLogin } from "../components/Signin/Signin.styles";
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*"
@@ -23,7 +23,7 @@ axios.defaults.withCredentials = true
 
 function SignIn() {
 
-  const {signIn} = React.useContext(AuthContext)
+  const { signIn } = React.useContext(AuthContext)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,53 +43,53 @@ function SignIn() {
   return (
     <Container title="RotaWeb">
       <BgSection>
-        <input type="hidden"/>
+        <input type="hidden" />
         <section className="signinbg">
-        <FormLogin>
-        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <Image
-          src={Rota}
-          alt="rota"
-          width={240}
-          height={46}
-          />
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="cpf"
-              label="CPF"
-              name="cpf"
-              autoComplete="cpf"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Entrar
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="https://www8.defesasocial.rn.gov.br/autenticador/index.xhtml" variant="body2">
-                  Esqueceu a senha?
-                </Link>
-              </Grid>
-            </Grid>
+          <FormLogin>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <Image
+                src={Rota}
+                alt="rota"
+                width={240}
+                height={46}
+              />
+              <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="cpf"
+                  label="CPF"
+                  name="cpf"
+                  autoComplete="cpf"
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Senha"
+                  type="password"
+                  id="password"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Entrar
+                </Button>
+                <Grid container>
+                  <Grid item xs>
+                    <Link href="https://www8.defesasocial.rn.gov.br/autenticador/index.xhtml" variant="body2">
+                      Esqueceu a senha?
+                    </Link>
+                  </Grid>
+                </Grid>
+              </Box>
             </Box>
-          </Box>
           </FormLogin>
         </section>
       </BgSection>
