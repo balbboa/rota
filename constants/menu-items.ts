@@ -1,7 +1,6 @@
 import {
-  AccountBalanceWallet, House,
-  InsertInvitation,
-  LocalDining
+  AccountBalanceWallet, House, InsertInvitation,
+  LocalDining, Person
 } from "@styled-icons/material";
 import React from "react";
 
@@ -57,11 +56,11 @@ const MENU_OPTIONS: MenuOption[] = [
     icon: AccountBalanceWallet,
     url: "/diarias",
   },
-  // {
-  //   name: "Marcar DO",
-  //   icon: Person,
-  //   url: "/marcacao",
-  // },
+  {
+    name: "Marcar DO",
+    icon: Person,
+    url: "/marcacao",
+  },
   // {
   //   name: "Sair",
   //   icon: ExitToApp,

@@ -1,18 +1,13 @@
-import { Menu, ChevronLeft, KeyboardArrowDown } from "@styled-icons/material";
-import {
-  HeaderContainer,
-  IconContainer,
-  TitleContainer,
-  Notification,
-  Text,
-  LogoContainer
-} from "./Header.styles";
-import Image from 'next/image';
-import userPic from '../../public/user.png';
-import Bell from '../../public/bell.png';
-import Rota from '../../public/RotaWeb.png';
-import { useEffect, useState } from "react";
+import { ChevronLeft, Menu } from "@styled-icons/material";
 import axios from "axios";
+import Image from 'next/image';
+import { useEffect, useState } from "react";
+import Rota from '../../public/RotaWeb.png';
+import userPic from '../../public/user.png';
+import {
+    HeaderContainer,
+    IconContainer, LogoContainer, Text, TitleContainer
+} from "./Header.styles";
 
 interface Perfil {
   usuario_nome_guerra: string,
@@ -35,7 +30,7 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
 
   const loadUser = async () => {
     try {
-    const res = await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/usuario`, '',
+    const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
       {
         headers:{
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
