@@ -50,7 +50,7 @@ function Diarias() {
   }, [])
 
   async function getDiarias(date: InputDiarias) {
-    await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/minhas_diarias`, date,
+    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_diarias`, date,
       {
         headers:{
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

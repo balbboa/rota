@@ -1,7 +1,7 @@
 import Card from '@mui/material/Card';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { HeaderPanel, CardContent, CardPanel, Container, TextCard } from './Panel.styles';
+import { CardContent, CardPanel, Container, HeaderPanel, TextCard } from './Panel.styles';
 
 interface Perfil {
   usuario_nome_guerra: string,
@@ -20,7 +20,7 @@ export default function Panel(){
 
   const loadUser = async () => {
     try {
-    const res = await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/usuario`, '',
+    const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
       {
         headers:{
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

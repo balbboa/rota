@@ -60,7 +60,7 @@ function Vales() {
   }, [])
 
   async function getVales(date: InputVale) {
-    await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/meus_vales`, date,
+    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/meus_vales`, date,
       {
         headers:{
         'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
