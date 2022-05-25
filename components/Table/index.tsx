@@ -51,11 +51,12 @@ interface Diaria {
 }
 
 interface Marcacao {
-  codigo: number,
+  ordem: number,
   unidade: string,
-  data_marcacao: string,
-  quantidade: string,
-  opcoes: string
+  inicio: string,
+  termino: string,
+  local: string,
+  funcao: string
 }
 
 export default function DataTable({ columns, rows }: IParams) {
@@ -144,7 +145,7 @@ export default function DataTable({ columns, rows }: IParams) {
                 <TextModal><span>Observação:</span> {diaria?.observacao_diaria}</TextModal>
               </>
             ) : ('')}
-            {marcacao?.data_marcacao ? (
+            {marcacao?.funcao ? (
               <>
                 <TextModal><span>Ordem:</span> {marcacao?.ordem}</TextModal>
                 <TextModal><span>Unidade:</span> {marcacao?.unidade}</TextModal>
