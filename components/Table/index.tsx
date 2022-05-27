@@ -246,6 +246,7 @@ export default function DataTable({ columns, rows }: IParams) {
           </DialogTitle>
           <DialogContent>
 
+            {/* https://mui.com/pt/material-ui/react-progress/ */}
             {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
 
           </DialogContent>
