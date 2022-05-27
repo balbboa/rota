@@ -13,6 +13,8 @@ import {
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
+import axios from "axios";
+import Link from "next/link";
 import * as React from 'react';
 import { useState } from "react";
 import { AgreeSpan, TextModal } from "./Table.Styles";
@@ -67,7 +69,7 @@ export default function DataTable({ columns, rows }: IParams) {
   const [marcacao, setMarcacao] = useState<Marcacao>()
   const [btnDisabled, setBtnDisabled] = React.useState(true)
   const [active, setActive] = useState(false);
-
+  const [modalOk, setModalOk] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -82,7 +84,7 @@ export default function DataTable({ columns, rows }: IParams) {
     setMarcacao(response)
   }
 
-  const handleClickOpen = () => {
+  const handleBOpen = () => {
     setActive(true);
   };
   const handleBClose = () => {
@@ -91,6 +93,24 @@ export default function DataTable({ columns, rows }: IParams) {
   };
 
   let string1 = 'eu concordo'
+
+  async function marcarDO() {
+    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_escalas`,
+      {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+        }
+      }).then(res => { })
+  }
+
+  const handleMarcar = async (e) => {
+    setModalOk(true)
+    await marcarDO()
+  }
+
+  const handleCloseMarcar = async (e) => {
+    setModalOk(false)
+  }
 
   return (
     <div style={{ width: '100%', height: '100%' }}>
@@ -156,49 +176,10 @@ export default function DataTable({ columns, rows }: IParams) {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={handleClickOpen}
+                  onClick={handleMarcar}
                 >
                   Marcar
                 </Button>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="alert-dialog-title"
-                  aria-describedby="alert-dialog-description"
-                >
-                  <DialogTitle id="alert-dialog-title">
-                    {"Requisitos Obrigatórios para Marcar esta Diária"}
-                  </DialogTitle>
-                  <DialogContent>
-                    <h4>Termo de Condições e Responsabilidades</h4>
-                    <DialogContentText id="alert-dialog-description">
-                      <ul>
-                        <li>A diária operacional é de caráter voluntário, contudo, após confirmar sua voluntariedade para o serviço, o agente ficará na responsabilidade para o cumprimento, podendo este, na sua ausência, trazer prejuízo ao serviço.</li>
-                        <li>O voluntário deverá apresentar-se ao serviço no local e horário informado, com o Uniforme e equipamentos adequados.</li>
-                        <li>É de responsabilidade do voluntário verificar no sistema RotaWeb (menu Minhas Escalas) se não há nenhum choque de horário entre os serviços, para o qual foi escalado, fiscalizado ou voluntário, e informar, o mais breve possível, alterações que o mesmo identificar à administração da sua Unidade.</li>
-                        <li>O voluntário ao marcar uma Diária Opercional no sistema RotaWeb declara estar ciente dos requisitos exigidos para o serviço e que atende os mesmos sem ressalvas.</li>
-                        <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
-                        <li>Digite <AgreeSpan>{string1}</AgreeSpan> para prosseguir</li>
-                      </ul>
-                    </DialogContentText>
-                    <TextField
-                      fullWidth
-                      name="termo"
-                      label="Assinatura"
-                      type="text"
-                      onChange={(e) => {
-                        if (e.target.value == string1) { setBtnDisabled(false) }
-                        else { setBtnDisabled(true) }
-                      }}
-                    />
-                  </DialogContent>
-                  <DialogActions>
-                    <Button disabled={btnDisabled} variant="contained" onClick={handleBClose}>Confirmar</Button>
-                    <Button onClick={handleBClose} autoFocus>
-                      Cancelar
-                    </Button>
-                  </DialogActions>
-                </Dialog>
               </>
             ) : ('')}
           </DialogContentText>
@@ -207,6 +188,67 @@ export default function DataTable({ columns, rows }: IParams) {
           <Button onClick={handleClose} autoFocus>
             Voltar
           </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={active}
+        onClose={handleBClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Requisitos Obrigatórios para Marcar esta Diária"}
+        </DialogTitle>
+        <DialogContent>
+          <h4>Termo de Condições e Responsabilidades</h4>
+          <DialogContentText id="alert-dialog-description">
+            <ul>
+              <li>A diária operacional é de caráter voluntário, contudo, após confirmar sua voluntariedade para o serviço, o agente ficará na responsabilidade para o cumprimento, podendo este, na sua ausência, trazer prejuízo ao serviço.</li>
+              <li>O voluntário deverá apresentar-se ao serviço no local e horário informado, com o Uniforme e equipamentos adequados.</li>
+              <li>É de responsabilidade do voluntário verificar no sistema RotaWeb (menu Minhas Escalas) se não há nenhum choque de horário entre os serviços, para o qual foi escalado, fiscalizado ou voluntário, e informar, o mais breve possível, alterações que o mesmo identificar à administração da sua Unidade.</li>
+              <li>O voluntário ao marcar uma Diária Opercional no sistema RotaWeb declara estar ciente dos requisitos exigidos para o serviço e que atende os mesmos sem ressalvas.</li>
+              <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
+              <li>Digite <AgreeSpan>{string1}</AgreeSpan> para prosseguir</li>
+            </ul>
+          </DialogContentText>
+          <TextField
+            fullWidth
+            name="termo"
+            label="Assinatura"
+            type="text"
+            onChange={(e) => {
+              if (e.target.value == string1) { setBtnDisabled(false) }
+              else { setBtnDisabled(true) }
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button disabled={btnDisabled} variant="contained" onClick={handleBClose}>Confirmar</Button>
+          <Button onClick={handleBClose} autoFocus>
+            Cancelar
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={modalOk}
+        onClose={handleCloseMarcar}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Diária marcada com sucesso!"}
+        </DialogTitle>
+        <DialogContent>
+
+        </DialogContent>
+        <DialogActions>
+          <Link href='/dashboard'>
+            <Button onClick={handleCloseMarcar} autoFocus>
+              Voltar
+            </Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </div>
