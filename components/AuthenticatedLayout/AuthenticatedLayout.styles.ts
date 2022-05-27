@@ -19,19 +19,17 @@ export const Content = styled.div`
 `;
 
 export const PageContainer = styled.div`
+  background-color: white;
+  padding: 20px;
+  height: 100vh;
+
   @media(min-width: 992px) {   
-    padding: 20px;
-    height: 100vh;
     width: 80vw;
-    background-color: white;
     border-radius: 25px 0 0 0;
   }
   @media(max-width: 992px) {   
-    padding: 20px;
     width: 100vw;
-    background-color: white;
     overflow-y: scroll;
-    height: 100vh;
   }
 
 `;
