@@ -70,6 +70,7 @@ export default function DataTable({ columns, rows }: IParams) {
   const [btnDisabled, setBtnDisabled] = React.useState(true)
   const [active, setActive] = useState(false);
   const [modalOk, setModalOk] = useState(false);
+  const [state, setState] = useState<boolean>(false)
 
   const handleClose = () => {
     setOpen(false);
@@ -100,7 +101,9 @@ export default function DataTable({ columns, rows }: IParams) {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
         }
-      }).then(res => { })
+      }).then(res => {
+        setState(true)
+      })
   }
 
   const handleMarcar = async (e) => {
@@ -237,12 +240,27 @@ export default function DataTable({ columns, rows }: IParams) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Diária marcada com sucesso!"}
-        </DialogTitle>
-        <DialogContent>
+        {state == false ? (<>
+          <DialogTitle id="alert-dialog-title">
+            {"Diária marcada com sucesso!"}
+          </DialogTitle>
+          <DialogContent>
 
-        </DialogContent>
+            {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
+
+          </DialogContent>
+        </>
+        ) : (<>
+          <DialogTitle id="alert-dialog-title">
+            {"Ocorreu algum problema!"}
+          </DialogTitle>
+          <DialogContent>
+
+            {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
+
+          </DialogContent>
+        </>
+        )}
         <DialogActions>
           <Link href='/dashboard'>
             <Button onClick={handleCloseMarcar} autoFocus>
