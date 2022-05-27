@@ -116,7 +116,7 @@ function Marcacao() {
     finalDate = today
   }
 
-  let hour = curr.getHours();
+  // let hour = curr.getHours();
   // let string1 = [ "eu concordo", "estou ciente", "estou de acordo"]
 
   return (
