@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Fab,
   TextField
 } from "@mui/material";
 import {
@@ -13,6 +14,8 @@ import {
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
+import { Check } from '@styled-icons/material';
+import { Dangerous } from '@styled-icons/material/Dangerous';
 import axios from "axios";
 import Link from "next/link";
 import * as React from 'react';
@@ -188,7 +191,7 @@ export default function DataTable({ columns, rows }: IParams) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleBOpen} autoFocus>
             Voltar
           </Button>
         </DialogActions>
@@ -227,7 +230,7 @@ export default function DataTable({ columns, rows }: IParams) {
           />
         </DialogContent>
         <DialogActions>
-          <Button disabled={btnDisabled} variant="contained" onClick={handleBClose}>Confirmar</Button>
+          <Button disabled={btnDisabled} variant="contained" onClick={handleMarcar}>Confirmar</Button>
           <Button onClick={handleBClose} autoFocus>
             Cancelar
           </Button>
@@ -239,6 +242,14 @@ export default function DataTable({ columns, rows }: IParams) {
         onClose={handleCloseMarcar}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        sx={{
+          '& .MuiDialog-paper': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems:'center',
+            justifyContent:'center'
+          },
+        }}
       >
         {state == false ? (<>
           <DialogTitle id="alert-dialog-title">
@@ -246,7 +257,15 @@ export default function DataTable({ columns, rows }: IParams) {
           </DialogTitle>
           <DialogContent>
 
-            {/* https://mui.com/pt/material-ui/react-progress/ */}
+            <Fab
+              aria-label="save"
+              sx={{
+                color: 'success.main',
+              }}
+            >
+              <Check />
+            </Fab>
+
             {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
 
           </DialogContent>
@@ -257,6 +276,15 @@ export default function DataTable({ columns, rows }: IParams) {
           </DialogTitle>
           <DialogContent>
 
+            <Fab
+              aria-label="save"
+              sx={{
+                color: 'error.main',
+              }}
+            >
+              <Dangerous />
+            </Fab>
+
             {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
 
           </DialogContent>
@@ -264,7 +292,7 @@ export default function DataTable({ columns, rows }: IParams) {
         )}
         <DialogActions>
           <Link href='/dashboard'>
-            <Button onClick={handleCloseMarcar} autoFocus>
+            <Button autoFocus>
               Voltar
             </Button>
           </Link>
