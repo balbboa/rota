@@ -6,6 +6,8 @@ declare module "styled-components" {
       main: string;
       primary: string;
       secondary: string;
+      success: string;
+      error: string;
       textDark: string;
       textLight: string;
       greyBg: string;
