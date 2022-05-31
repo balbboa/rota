@@ -246,8 +246,8 @@ export default function DataTable({ columns, rows }: IParams) {
           '& .MuiDialog-paper': {
             display: 'flex',
             flexDirection: 'column',
-            alignItems:'center',
-            justifyContent:'center'
+            alignItems: 'center',
+            justifyContent: 'center'
           },
         }}
       >
@@ -256,14 +256,10 @@ export default function DataTable({ columns, rows }: IParams) {
             {"Diária marcada com sucesso!"}
           </DialogTitle>
           <DialogContent>
-
             <Fab
               aria-label="save"
-              sx={{
-                color: 'success.main',
-              }}
             >
-              <Check />
+              <Check color="green" />
             </Fab>
 
             {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
@@ -276,14 +272,7 @@ export default function DataTable({ columns, rows }: IParams) {
           </DialogTitle>
           <DialogContent>
 
-            <Fab
-              aria-label="save"
-              sx={{
-                color: 'error.main',
-              }}
-            >
-              <Dangerous />
-            </Fab>
+            <Dangerous color="red" />
 
             {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
 
