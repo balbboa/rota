@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex: 1;
-  background-color: #e4f6ff;
+  background-color: #bdcdf5;
 `;
 
 export const PageContainer = styled.div`
