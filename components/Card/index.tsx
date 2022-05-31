@@ -11,58 +11,58 @@ import { Container, CustomCard, TextCard } from './Card.styles';
 
 
 export default function DashboardCards() {
-  return (
-    <Container>
-    <Link href="/escalas">
-        <CustomCard>
-        <Card sx={{ maxWidth: 345 }}>
-        <CardContent>
-        <Image
-            src={Calendar}
-            alt="calendar"
-            width={80}
-            height={80}/>
-            <TextCard>
-                Escalas
-            </TextCard>
-        </CardContent>
-        </Card>
-        </CustomCard>
-    </Link>
+    return (
+        <Container>
+            <Link href="/escalas">
+                <CustomCard>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardContent>
+                            <Image
+                                src={Calendar}
+                                alt="calendar"
+                                width={80}
+                                height={80} />
+                            <TextCard>
+                                Escalas
+                            </TextCard>
+                        </CardContent>
+                    </Card>
+                </CustomCard>
+            </Link>
 
-    <Link href="/vales">
-        <CustomCard>
-        <Card sx={{ maxWidth: 345 }}>
-        <CardContent>
-        <Image
-            src={Meal}
-            alt="meal"
-            width={80}
-            height={80}/>
-            <TextCard>
-                Vales
-            </TextCard>
-        </CardContent>
-        </Card>
-        </CustomCard>
-    </Link>
+            <Link href="/vales">
+                <CustomCard>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardContent>
+                            <Image
+                                src={Meal}
+                                alt="meal"
+                                width={80}
+                                height={80} />
+                            <TextCard>
+                                Vales
+                            </TextCard>
+                        </CardContent>
+                    </Card>
+                </CustomCard>
+            </Link>
 
-    <Link href="/diarias">
-        <CustomCard>
-        <Card sx={{ maxWidth: 345 }}>
-        <CardContent>
-        <Image
-            src={Credit}
-            alt="credit"
-            width={80}
-            height={80}/>
-            <TextCard>
-                Diárias
-            </TextCard>
-        </CardContent>
-        </Card>
-        </CustomCard>
-    </Link>
+            <Link href="/diarias">
+                <CustomCard>
+                    <Card sx={{ maxWidth: 345 }}>
+                        <CardContent>
+                            <Image
+                                src={Credit}
+                                alt="credit"
+                                width={80}
+                                height={80} />
+                            <TextCard>
+                                Diárias
+                            </TextCard>
+                        </CardContent>
+                    </Card>
+                </CustomCard>
+            </Link>
 
     {/* <Link href="/marcacao">
         <CustomCard>

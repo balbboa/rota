@@ -4,8 +4,8 @@ export const CustomCard = styled.div`
 
   @media(min-width: 992px) and (max-width: 1400px) {  
     div {
-      background: rgb(34,146,210);
-      background: linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background: rgb(0,30,60);
+      background: linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,60,120,1) 25%, rgba(0,87,173,1) 75%, rgba(0,103,205,1) 100%);
       color: white;
       border-radius: 25px;
       cursor: pointer;  
@@ -20,8 +20,8 @@ export const CustomCard = styled.div`
 
   @media(min-width: 1400px) {  
     div {
-      background: rgb(34,146,210);
-      background: linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background: rgb(0,30,60);
+      background: linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,60,120,1) 25%, rgba(0,87,173,1) 75%, rgba(0,103,205,1) 100%);
       color: white;
       border-radius: 25px;
       cursor: pointer;  
