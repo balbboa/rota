@@ -28,7 +28,17 @@ export const CardPanel = styled.div`
     } 
   }
 
-  @media(max-width: 992px) {     
+  @media(min-width: 768px) and (max-width: 992px) {
+    div {
+      width: 680px;
+      height: 300px;
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,87,173,1) 50%, rgba(0,128,255,1) 100%);
+      background-position: right;
+      background-repeat: no-repeat;  
+    } 
+  }
+
+  @media(max-width: 768px) {     
     div {
       color: white;
       border-radius: 25px;
