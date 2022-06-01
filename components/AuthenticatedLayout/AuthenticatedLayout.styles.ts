@@ -21,7 +21,6 @@ export const Content = styled.div`
 export const PageContainer = styled.div`
   background-color: white;
   padding: 20px;
-  height: 100vh;
 
   @media(min-width: 992px) {   
     width: 80vw;
