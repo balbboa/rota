@@ -119,7 +119,7 @@ export default function DataTable({ columns, rows }: IParams) {
   }
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%' }}>
       <DataGrid
         disableSelectionOnClick={true}
         rows={rows}
@@ -246,49 +246,33 @@ export default function DataTable({ columns, rows }: IParams) {
           '& .MuiDialog-paper': {
             display: 'flex',
             flexDirection: 'column',
-            alignItems:'center',
-            justifyContent:'center'
+            alignItems: 'center',
+            justifyContent: 'center'
           },
         }}
       >
-        {state == false ? (<>
-          <DialogTitle id="alert-dialog-title">
-            {"Diária marcada com sucesso!"}
-          </DialogTitle>
-          <DialogContent>
-
-            <Fab
-              aria-label="save"
-              sx={{
-                color: 'success.main',
-              }}
-            >
-              <Check />
-            </Fab>
-
-            {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
-
-          </DialogContent>
-        </>
-        ) : (<>
-          <DialogTitle id="alert-dialog-title">
-            {"Ocorreu algum problema!"}
-          </DialogTitle>
-          <DialogContent>
-
-            <Fab
-              aria-label="save"
-              sx={{
-                color: 'error.main',
-              }}
-            >
-              <Dangerous />
-            </Fab>
-
-            {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
-
-          </DialogContent>
-        </>
+        {state == false ? (
+          <>
+            <DialogTitle id="alert-dialog-title">
+              {"Diária marcada com sucesso!"}
+            </DialogTitle>
+            <DialogContent>
+              <Fab aria-label="save">
+                <Check color="green" />
+              </Fab>
+              {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
+            </DialogContent>
+          </>
+        ) : (
+          <>
+            <DialogTitle id="alert-dialog-title">
+              {"Ocorreu algum problema!"}
+            </DialogTitle>
+            <DialogContent>
+              <Dangerous color="red" />
+              {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
+            </DialogContent>
+          </>
         )}
         <DialogActions>
           <Link href='/dashboard'>

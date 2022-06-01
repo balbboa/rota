@@ -75,9 +75,10 @@ function SignIn() {
                 />
                 <Button
                   type="submit"
+                  color="primary"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, backgroundColor: '#00022e' }}
                 >
                   Entrar
                 </Button>
