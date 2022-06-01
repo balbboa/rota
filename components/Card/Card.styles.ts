@@ -64,11 +64,11 @@ export const Container = styled.div`
   flex-direction: row;
 
   @media(min-width: 992px) and (max-width: 1400px) {  
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   @media(min-width: 1400px) {  
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 25px;
   }
 
