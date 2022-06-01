@@ -64,26 +64,6 @@ export default function DashboardCards() {
                 </CustomCard>
             </Link>
 
-<<<<<<< HEAD
-    {/* <Link href="/marcacao">
-        <CustomCard>
-        <Card sx={{ maxWidth: 345 }}>
-        <CardContent>
-        <Image
-            src={Search}
-            alt="search"
-            width={80}
-            height={80}/>
-            <TextCard>
-                Marcar
-            </TextCard>
-        </CardContent>
-        </Card>
-        </CustomCard>
-    </Link> */}
-    </Container>
-  );
-=======
             {/* <Link href="/marcacao">
                 <CustomCard>
                     <Card sx={{ maxWidth: 345 }}>
@@ -102,5 +82,4 @@ export default function DashboardCards() {
             </Link> */}
         </Container>
     );
->>>>>>> main
 }
