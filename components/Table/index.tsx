@@ -119,7 +119,7 @@ export default function DataTable({ columns, rows }: IParams) {
   }
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div style={{ width: '100%' }}>
       <DataGrid
         disableSelectionOnClick={true}
         rows={rows}
