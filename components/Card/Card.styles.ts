@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const CustomCard = styled.div`
+  &:hover {
+    opacity: 80%;
+  }
 
   @media(min-width: 992px) and (max-width: 1400px) {  
     div {
@@ -10,6 +13,7 @@ export const CustomCard = styled.div`
       border-radius: 25px;
       cursor: pointer;  
       height: 150px;
+      hover: 
 
       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
       -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
