@@ -12,7 +12,7 @@ export const CardPanel = styled.div`
     div {
       width: 780px;
       height: 360px;
-      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,87,173,1) 50%, rgba(0,128,255,1) 100%);
       background-position: right;
       background-repeat: no-repeat;     
     }
@@ -22,7 +22,7 @@ export const CardPanel = styled.div`
     div {
       width: 780px;
       height: 300px;
-      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,87,173,1) 50%, rgba(0,128,255,1) 100%);
       background-position: right;
       background-repeat: no-repeat;  
     } 
@@ -34,7 +34,7 @@ export const CardPanel = styled.div`
       border-radius: 25px;
       width: 330px;
       height: 430px;
-      background-image: url("policeman.png"), linear-gradient(90deg, rgba(34,146,210,1) 50%, rgba(34,105,210,1) 85%, rgba(34,85,210,1) 100%);
+      background-image: url("policeman.png"), linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,87,173,1) 50%, rgba(0,128,255,1) 100%);
       background-position: top left;
       background-repeat: no-repeat;  
     }

@@ -5,11 +5,11 @@ import Panel from "../components/Panel";
 import withAuth from "../utils/withAuth";
 
 function Home() {
-  
+
   return (
     <Container title="Dashboard">
       <DashboardCards />
-      <Panel/>
+      <Panel />
     </Container>
   );
 }

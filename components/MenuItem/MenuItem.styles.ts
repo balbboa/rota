@@ -9,7 +9,7 @@ export const MenuItemContainer = styled.a<{ depth: number }>`
   justify-content: space-between;
   padding: 20px;
   margin: 25px;
-  color: #878c9f;
+  color: #001e3c;
 
   & svg {
     height: 30px;
@@ -17,7 +17,7 @@ export const MenuItemContainer = styled.a<{ depth: number }>`
   }
 
   &:hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: #004283;
     cursor: pointer;
   }
 

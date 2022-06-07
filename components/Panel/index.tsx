@@ -10,7 +10,7 @@ interface Perfil {
   usuario_titulo: string
 }
 
-export default function Panel(){
+export default function Panel() {
 
   useEffect(() => {
     loadUser()
@@ -20,22 +20,22 @@ export default function Panel(){
 
   const loadUser = async () => {
     try {
-    const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
-      {
-        headers:{
-        'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
-        }
-      })
-      SetUsers(res.data.data) 
-  } catch (err){
-    console.log(err) 
-  } 
+      const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+          }
+        })
+      SetUsers(res.data.data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
 
   return (
-  <Container>
-    <HeaderPanel>Informações Pessoais</HeaderPanel><CardPanel>
+    <Container>
+      <HeaderPanel>Informações Pessoais</HeaderPanel><CardPanel>
         <Card sx={{ maxWidth: 1200 }}>
           <CardContent>
             <>
