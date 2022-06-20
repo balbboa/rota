@@ -14,3 +14,6 @@ export const TextModal = styled.p`
   }
 `;
 
+export const AgreeSpan = styled.span`
+  font-weight: 900;
+`;

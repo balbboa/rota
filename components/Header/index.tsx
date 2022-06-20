@@ -1,18 +1,13 @@
-import { Menu, ChevronLeft, KeyboardArrowDown } from "@styled-icons/material";
+import { ChevronLeft, Menu } from "@styled-icons/material";
+import axios from "axios";
+import Image from 'next/image';
+import { useEffect, useState } from "react";
+import Rota from '../../public/RotaWeb.png';
+import userPic from '../../public/user.png';
 import {
   HeaderContainer,
-  IconContainer,
-  TitleContainer,
-  Notification,
-  Text,
-  LogoContainer
+  IconContainer, LogoContainer, Text, TitleContainer
 } from "./Header.styles";
-import Image from 'next/image';
-import userPic from '../../public/user.png';
-import Bell from '../../public/bell.png';
-import Rota from '../../public/RotaWeb.png';
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 interface Perfil {
   usuario_nome_guerra: string,
@@ -35,16 +30,16 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
 
   const loadUser = async () => {
     try {
-    const res = await axios.post(`https://www2.agendamento.pm.rn.gov.br/sispag_ws/v1/public/api/usuario`, '',
-      {
-        headers:{
-        'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
-        }
-      })
-      SetUsers(res.data.data) 
-  } catch (err){
-    console.log(err) 
-  } 
+      const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
+        {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
+          }
+        })
+      SetUsers(res.data.data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -58,25 +53,25 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
           alt="rota"
           width={120}
           height={23}
-          />
+        />
       </LogoContainer>
       <TitleContainer>
-      {/* <Notification>
+        {/* <Notification>
         <Image
           src={Bell}
           alt="Você"
           width={25}
           height={25}/>
       </Notification> */}
-      <Image
-        src={userPic}
-        alt="Você"/>
-        <Text>{users?.usuario_titulo} {users?.usuario_nome_guerra}</Text> 
+        <Image
+          src={userPic}
+          alt="Você" />
+        <Text>{users?.usuario_titulo} {users?.usuario_nome_guerra}</Text>
         {/* <IconContainer>
         <KeyboardArrowDown />
         </IconContainer> */}
       </TitleContainer>
-      
+
     </HeaderContainer>
   );
 }

@@ -1,7 +1,7 @@
-import { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-import React from 'react'
-import AuthenticatedLayout from '../AuthenticatedLayout/AuthenticatedLayout'
+import { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import React from 'react';
+import AuthenticatedLayout from '../AuthenticatedLayout/AuthenticatedLayout';
 
 export default function Routes({ Component, pageProps, ...appProps }: AppProps) {
 
@@ -10,7 +10,7 @@ export default function Routes({ Component, pageProps, ...appProps }: AppProps) 
     const router = useRouter();
 
 
-    if (router.pathname==='/')
+    if (router.pathname === '/')
       return <Component {...pageProps} />;
 
     return (
