@@ -68,7 +68,9 @@ const [state, setState] = useState<boolean>()
           if (item.situacao === 'Digitando') {
             color =  'warning'
           }
-
+          if (item.situacao === 'Falta') {
+            color =  'error'
+          }
           return ({
           id: Math.random(),
           titulo_escala: item.titulo_escala, 

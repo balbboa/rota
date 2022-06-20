@@ -36,3 +36,7 @@ form {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.MuiDataGrid-row{
+  cursor: pointer;
+}

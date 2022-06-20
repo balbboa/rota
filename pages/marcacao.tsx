@@ -9,6 +9,7 @@ import withAuth from '../utils/withAuth';
 
 function Marcacao() {
   const [open, setOpen] = React.useState(false);
+  const [btnDisabled, setBtnDisabled] = React.useState(true)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -157,10 +158,11 @@ function Marcacao() {
             name="termo"
             label="Assinatura"
             type="text"
+            onChange={(text) => setBtnDisabled(!text.target.value)}
           />
         </DialogContent>
         <DialogActions>
-          <Button disabled variant="contained" onClick={handleClose}>Confirmar</Button>
+          <Button disabled={btnDisabled} variant="contained" onClick={handleClose}>Confirmar</Button>
           <Button onClick={handleClose} autoFocus>
             Cancelar
           </Button>

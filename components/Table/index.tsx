@@ -4,7 +4,8 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
+  TextField
 } from "@mui/material";
 import {
   DataGrid,
@@ -59,6 +60,7 @@ interface Marcacao {
 
 export default function DataTable({columns, rows}:IParams) {
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [escala, setEscala] = useState<Escala>()
   const [vale, setVale] = useState<Vale>()
   const [diaria, setDiaria] = useState<Diaria>()
@@ -66,6 +68,13 @@ export default function DataTable({columns, rows}:IParams) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClickOpen = () => {
+    setIsOpen(true);
+  };
+  const handleClickClose = () => {
+    setIsOpen(false);
   };
 
   const handleCellOpen = (params: GridCellParams) => {
@@ -139,6 +148,48 @@ export default function DataTable({columns, rows}:IParams) {
               <TextModal><span>Data e Hora:</span> {marcacao?.data_marcacao}</TextModal>
               <TextModal><span>Quantidade:</span> {marcacao?.quantidade}</TextModal>
               <TextModal><span>Opções:</span> {marcacao?.opcoes}</TextModal>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClickOpen}
+              >
+                Marcar
+              </Button>
+
+              <Dialog
+                open={isOpen}
+                onClose={handleClickClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle id="alert-dialog-title">
+                  {"Requisitos Obrigatórios para Marcar esta Diária"}
+                </DialogTitle>
+                <DialogContent>
+                  <h4>Termo de Condições e Responsabilidades</h4>
+                  <DialogContentText id="alert-dialog-description"> 
+                    <ul>
+                      <li>A diária operacional é de caráter voluntário, contudo, após confirmar sua voluntariedade para o serviço, o agente ficará na responsabilidade para o cumprimento, podendo este, na sua ausência, trazer prejuízo ao serviço.</li>
+                      <li>O voluntário deverá apresentar-se ao serviço no local e horário informado, com o Uniforme e equipamentos adequados.</li>
+                      <li>É de responsabilidade do voluntário verificar no sistema RotaWeb (menu Minhas Escalas) se não há nenhum choque de horário entre os serviços, para o qual foi escalado, fiscalizado ou voluntário, e informar, o mais breve possível, alterações que o mesmo identificar à administração da sua Unidade.</li>
+                      <li>O voluntário ao marcar uma Diária Opercional no sistema RotaWeb declara estar ciente dos requisitos exigidos para o serviço e que atende os mesmos sem ressalvas.</li>
+                      <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
+                    </ul>
+                  </DialogContentText>
+                  <TextField
+                    fullWidth
+                    name="termo"
+                    label="Assinatura"
+                    type="text"
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button disabled variant="contained" onClick={handleClose}>Confirmar</Button>
+                  <Button onClick={handleClose} autoFocus>
+                    Cancelar
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </>
           ):('')}
         </DialogContentText>
