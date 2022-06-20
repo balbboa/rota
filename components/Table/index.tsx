@@ -81,13 +81,6 @@ export default function DataTable({ columns, rows }: IParams) {
     setOpen(false);
   };
 
-  const handleClickOpen = () => {
-    setIsOpen(true);
-  };
-  const handleClickClose = () => {
-    setIsOpen(false);
-  };
-
   const handleCellOpen = (params: GridCellParams) => {
     setOpen(true)
     const response = params.row

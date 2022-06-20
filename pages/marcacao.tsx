@@ -24,7 +24,7 @@ function Marcacao() {
     { field: 'unit', headerName: 'Unidade', type: 'string', minWidth: 300, flex: 1 },
     { field: 'startDate', headerName: 'Início', type: 'dateTime', minWidth: 160, flex: 1 },
     { field: 'endDate', headerName: 'Término', type: 'dateTime', minWidth: 160, flex: 1 },
-    { field: 'local', headerName: 'Local', type: 'string', minWidth: 300, flex: 1 },
+    { field: 'local', headerName: 'Local', type: 'string', minWidth: 100, flex: 1 },
     { field: 'funcao', headerName: 'Função', type: 'string', minWidth: 100, flex: 1 },
   ];
 
