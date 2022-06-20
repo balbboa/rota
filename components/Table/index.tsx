@@ -285,5 +285,5 @@ export default function DataTable({ columns, rows }: IParams) {
         </DialogActions>
       </Dialog>
     </div>
-  );
+  ); 
 }
