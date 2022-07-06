@@ -34,6 +34,7 @@ function Escalas() {
   const [rows, setRows] = useState<any>([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const previewRows = sessionStorage.getItem('escala')
@@ -46,6 +47,8 @@ function Escalas() {
   }, [])
 
   async function getEscalas(date: InputEscala) {
+    setLoading(true)
+
     await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_escalas`, date,
       {
         headers: {
@@ -83,10 +86,15 @@ function Escalas() {
           })
 
         sessionStorage.setItem('escala', JSON.stringify(rows))
-
+        setLoading(false)
         setRows(rows)
         setState(true)
 
+      }).catch(err => {
+        console.log(err.response.data)
+        setErro(err.response.data)
+        setState(false)
+        setLoading(false)
       })
   }
 
@@ -145,13 +153,14 @@ function Escalas() {
         >
           Consultar
         </Button>
+        {loading == true ? (
+          <div className="spinner"></div>
+        ) : (null)}
       </Form>
       {state == false ? (
         <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
-      ) : (null)
-      }
+      ) : (null)}
       <DataTable columns={columns} rows={rows} />
-
     </Container>
   );
 }

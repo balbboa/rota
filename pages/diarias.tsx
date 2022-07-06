@@ -42,6 +42,7 @@ function Diarias() {
   const [rows, setRows] = useState([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const previewRows = sessionStorage.getItem('diaria')
@@ -52,6 +53,7 @@ function Diarias() {
   }, [])
 
   async function getDiarias(date: InputDiarias) {
+    setLoading(true)
     await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_diarias`, date,
       {
         headers: {
@@ -86,7 +88,7 @@ function Diarias() {
             situacao_diaria: { name: item.situacao_diaria, color },
           })
         })
-
+        setLoading(false)
         setRows(rows)
         setState(true)
         sessionStorage.setItem('diaria', JSON.stringify(rows))
@@ -95,6 +97,7 @@ function Diarias() {
         console.log(err.response.data)
         setErro(err.response.data)
         setState(false)
+        setLoading(false)
       })
   }
 
@@ -152,6 +155,9 @@ function Diarias() {
         >
           Consultar
         </Button>
+        {loading == true ? (
+          <div className="spinner"></div>
+        ) : (null)}
       </Form>
 
       {state == false ? (
