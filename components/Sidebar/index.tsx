@@ -5,8 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 import MenuItemsList from "../MenuItemsList";
 import { Exit, SidebarContainer } from "./Sidebar.styles";
 
-
-
 type SidebarProps = {
   isOpened: boolean;
 };
