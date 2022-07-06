@@ -154,7 +154,7 @@ function Escalas() {
           Consultar
         </Button>
         {loading == true ? (
-          <div className="spinner"></div>
+          <div className="spinner"> </div>
         ) : (null)}
       </Form>
       {state == false ? (
