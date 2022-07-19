@@ -4,6 +4,8 @@ export const Container = styled.div`
   @media(max-width: 992px) {
     width: 100vw; 
     position: fixed
+    height: 100vh;
+    overflow-y: scroll;
   } 
   text-align: center;
   display: flex;
