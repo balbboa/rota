@@ -33,9 +33,10 @@ function SignIn() {
       password: formData.get('password')
     }
     const data = {
-      cpf: `${obj.cpf}`,
+      cpf: `${obj.cpf}`.trim().replaceAll('.', '').replace('-', ''),
       password: `${obj.password}`
     }
+    console.log({data})
 
     await signIn(data)
   };
