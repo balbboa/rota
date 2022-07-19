@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Image from 'next/image';
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { BgSection, FormLogin } from "../components/Signin/Signin.styles";
 import { AuthContext } from "../contexts/AuthContext";
@@ -30,6 +30,7 @@ function SignIn() {
       Router.push('/dashboard')
     }
   })  
+  const [val, setVal] = useState(0);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
