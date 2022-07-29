@@ -5,13 +5,12 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import Image from 'next/image';
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../components/Container";
 import { BgSection, FormLogin } from "../components/Signin/Signin.styles";
 import { AuthContext } from "../contexts/AuthContext";
 import Rota from '../public/RotaWeb.png';
-
-
+import Router from 'next/router';
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = "*"
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = true
@@ -24,6 +23,14 @@ axios.defaults.withCredentials = true
 function SignIn() {
 
   const { signIn } = React.useContext(AuthContext)
+  
+  useEffect(() => {
+    const token = localStorage.getItem('auth_token')
+    if (token){
+      Router.push('/dashboard')
+    }
+  })  
+  const [val, setVal] = useState(0);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,9 +40,10 @@ function SignIn() {
       password: formData.get('password')
     }
     const data = {
-      cpf: `${obj.cpf}`,
+      cpf: `${obj.cpf}`.trim().replaceAll('.', '').replace('-', ''),
       password: `${obj.password}`
     }
+    console.log({data})
 
     await signIn(data)
   };

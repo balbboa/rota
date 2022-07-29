@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 import Rota from '../../public/RotaWeb.png';
 import userPic from '../../public/user.png';
 import {
-  HeaderContainer,
-  IconContainer, LogoContainer, Text, TitleContainer
+    HeaderContainer,
+    IconContainer, LogoContainer, Text, TitleContainer
 } from "./Header.styles";
 
 interface Perfil {
@@ -30,7 +30,7 @@ export default function Header({ isOpened, toggleDrawer }: HeaderProps) {
 
   const loadUser = async () => {
     try {
-      const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
+      const res = await axios.post(`https://rota.pm.rn.gov.br/api/usuario`, '',
         {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

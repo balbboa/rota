@@ -52,7 +52,7 @@ function Marcacao() {
   ];
 
   async function getMarcacao(date: InputMarcacao) {
-    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_escalas`, date,
+    await axios.post(`https://rota.pm.rn.gov.br/api/minhas_escalas`, date,
       {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

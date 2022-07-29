@@ -1,11 +1,9 @@
-import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "styled-components";
-import { theme } from "../styles/theme";
-import { AuthContext, AuthProvider } from "../contexts/AuthContext"
-import React from "react";
 import Routes from "../components/Routes";
-import { useRouter } from "next/router";
+import { AuthProvider } from "../contexts/AuthContext";
+import "../styles/globals.css";
+import { theme } from "../styles/theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
 

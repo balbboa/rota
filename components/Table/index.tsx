@@ -4,9 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  Fab,
-  TextField
+  DialogTitle
 } from "@mui/material";
 import {
   DataGrid,
@@ -14,13 +12,9 @@ import {
   GridColDef,
   ptBR
 } from '@mui/x-data-grid';
-import { Check } from '@styled-icons/material';
-import { Dangerous } from '@styled-icons/material/Dangerous';
-import axios from "axios";
-import Link from "next/link";
 import * as React from 'react';
 import { useState } from "react";
-import { AgreeSpan, TextModal } from "./Table.Styles";
+import { TextModal } from "./Table.Styles";
 
 interface IParams {
   columns: GridColDef[],
@@ -91,32 +85,6 @@ export default function DataTable({ columns, rows }: IParams) {
   const handleBOpen = () => {
     setActive(true);
   };
-  const handleBClose = () => {
-    setActive(false);
-    setBtnDisabled(true)
-  };
-
-  let string1 = 'eu concordo'
-
-  async function marcarDO() {
-    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_escalas`,
-      {
-        headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
-        }
-      }).then(res => {
-        setState(true)
-      })
-  }
-
-  const handleMarcar = async (e) => {
-    setModalOk(true)
-    await marcarDO()
-  }
-
-  const handleCloseMarcar = async (e) => {
-    setModalOk(false)
-  }
 
   return (
     <div style={{ width: '100%' }}>
@@ -171,115 +139,12 @@ export default function DataTable({ columns, rows }: IParams) {
                 <TextModal><span>Observação:</span> {diaria?.observacao_diaria}</TextModal>
               </>
             ) : ('')}
-            {marcacao?.funcao ? (
-              <>
-                <TextModal><span>Ordem:</span> {marcacao?.ordem}</TextModal>
-                <TextModal><span>Unidade:</span> {marcacao?.unidade}</TextModal>
-                <TextModal><span>Início:</span> {marcacao?.inicio}</TextModal>
-                <TextModal><span>Termino:</span> {marcacao?.termino}</TextModal>
-                <TextModal><span>Local:</span> {marcacao?.local}</TextModal>
-                <TextModal><span>Função:</span> {marcacao?.funcao}</TextModal>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleMarcar}
-                >
-                  Marcar
-                </Button>
-              </>
-            ) : ('')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleBOpen} autoFocus>
+          <Button onClick={handleClose} autoFocus>
             Voltar
           </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={active}
-        onClose={handleBClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Requisitos Obrigatórios para Marcar esta Diária"}
-        </DialogTitle>
-        <DialogContent>
-          <h4>Termo de Condições e Responsabilidades</h4>
-          <DialogContentText id="alert-dialog-description">
-            <ul>
-              <li>A diária operacional é de caráter voluntário, contudo, após confirmar sua voluntariedade para o serviço, o agente ficará na responsabilidade para o cumprimento, podendo este, na sua ausência, trazer prejuízo ao serviço.</li>
-              <li>O voluntário deverá apresentar-se ao serviço no local e horário informado, com o Uniforme e equipamentos adequados.</li>
-              <li>É de responsabilidade do voluntário verificar no sistema RotaWeb (menu Minhas Escalas) se não há nenhum choque de horário entre os serviços, para o qual foi escalado, fiscalizado ou voluntário, e informar, o mais breve possível, alterações que o mesmo identificar à administração da sua Unidade.</li>
-              <li>O voluntário ao marcar uma Diária Opercional no sistema RotaWeb declara estar ciente dos requisitos exigidos para o serviço e que atende os mesmos sem ressalvas.</li>
-              <li>O voluntário que deixar de participar, a tempo, via SEI, a impossibilidade de comparecer ao serviço, faltar ou chegar atrasado, poderá sobre sanções previstas em lei.</li>
-              <li>Digite <AgreeSpan>{string1}</AgreeSpan> para prosseguir</li>
-            </ul>
-          </DialogContentText>
-          <TextField
-            fullWidth
-            name="termo"
-            label="Assinatura"
-            type="text"
-            onChange={(e) => {
-              if (e.target.value == string1) { setBtnDisabled(false) }
-              else { setBtnDisabled(true) }
-            }}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button disabled={btnDisabled} variant="contained" onClick={handleMarcar}>Confirmar</Button>
-          <Button onClick={handleBClose} autoFocus>
-            Cancelar
-          </Button>
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
-        open={modalOk}
-        onClose={handleCloseMarcar}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        sx={{
-          '& .MuiDialog-paper': {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
-          },
-        }}
-      >
-        {state == false ? (
-          <>
-            <DialogTitle id="alert-dialog-title">
-              {"Diária marcada com sucesso!"}
-            </DialogTitle>
-            <DialogContent>
-              <Fab aria-label="save">
-                <Check color="green" />
-              </Fab>
-              {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
-            </DialogContent>
-          </>
-        ) : (
-          <>
-            <DialogTitle id="alert-dialog-title">
-              {"Ocorreu algum problema!"}
-            </DialogTitle>
-            <DialogContent>
-              <Dangerous color="red" />
-              {/* <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert> */}
-            </DialogContent>
-          </>
-        )}
-        <DialogActions>
-          <Link href='/dashboard'>
-            <Button autoFocus>
-              Voltar
-            </Button>
-          </Link>
         </DialogActions>
       </Dialog>
     </div>

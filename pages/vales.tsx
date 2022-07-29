@@ -51,8 +51,7 @@ function Vales() {
   const [rows, setRows] = useState([])
   const [erro, setErro] = useState<any>()
   const [state, setState] = useState<boolean>()
-
-
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const previewRows = sessionStorage.getItem('vales')
@@ -64,7 +63,8 @@ function Vales() {
   }, [])
 
   async function getVales(date: InputVale) {
-    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/meus_vales`, date,
+    setLoading(true)
+    await axios.post(`https://rota.pm.rn.gov.br/api/meus_vales`, date,
       {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('auth_token')
@@ -101,16 +101,16 @@ function Vales() {
             situacao_vale: { name: item.situacao_vale, color },
           })
         })
-
+        setLoading(false)
         setRows(rows)
         setState(true)
         sessionStorage.setItem('vales', JSON.stringify(rows))
-
 
       }).catch(err => {
         console.log(err.response.data)
         setErro(err.response.data)
         setState(false)
+        setLoading(false)
       })
   }
 
@@ -167,15 +167,17 @@ function Vales() {
         >
           Consultar
         </Button>
+        {loading == true ? (
+          <div className="spinner"></div>
+        ) : (null)}
       </Form>
 
       {state == false ? (
         <Alert sx={{ my: 2 }} variant="filled" severity="error">{erro?.msg}{erro?.Mensagem}</Alert>
       ) : (null)
       }
-
+      
       <DataTable columns={columns} rows={rows} />
-
     </Container>
   );
 }

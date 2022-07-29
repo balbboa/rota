@@ -40,3 +40,23 @@ form {
 .MuiDataGrid-row{
   cursor: pointer;
 }
+
+.spinner {
+  align-self: center;
+  margin: 1rem;
+  width: 32px;
+  height: 32px;
+  border: 8px solid;
+  border-color: #001e3c transparent #001e3c transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
+
+@keyframes spin-anim {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
