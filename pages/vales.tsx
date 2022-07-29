@@ -64,7 +64,7 @@ function Vales() {
 
   async function getVales(date: InputVale) {
     setLoading(true)
-    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/meus_vales`, date,
+    await axios.post(`https://rota.pm.rn.gov.br/api/meus_vales`, date,
       {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

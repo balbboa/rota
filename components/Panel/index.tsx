@@ -20,7 +20,7 @@ export default function Panel() {
 
   const loadUser = async () => {
     try {
-      const res = await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/usuario`, '',
+      const res = await axios.post(`https://rota.pm.rn.gov.br/api/usuario`, '',
         {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

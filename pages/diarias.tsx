@@ -54,7 +54,7 @@ function Diarias() {
 
   async function getDiarias(date: InputDiarias) {
     setLoading(true)
-    await axios.post(`https://treinamento.rota.pm.rn.gov.br/api/minhas_diarias`, date,
+    await axios.post(`https://rota.pm.rn.gov.br/api/minhas_diarias`, date,
       {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem('auth_token')

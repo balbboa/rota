@@ -35,8 +35,8 @@ export function AuthProvider({ children }) {
 
   async function signIn({ cpf, password }: SignInData) {
     try {
-      await axios.get('https://treinamento.rota.pm.rn.gov.br/sanctum/csrf-cookie').then(response => {
-        axios.post(`https://treinamento.rota.pm.rn.gov.br/api/login`, { cpf, password }).then(res => {
+      await axios.get('https://rota.pm.rn.gov.br/sanctum/csrf-cookie').then(response => {
+        axios.post(`https://rota.pm.rn.gov.br/api/login`, { cpf, password }).then(res => {
           localStorage.setItem('auth_token', res.data.data.token);
           setIsAuthenticated(true)
           setToken(res.data.data.token)
