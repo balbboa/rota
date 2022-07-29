@@ -9,7 +9,6 @@ export default function Routes({ Component, pageProps, ...appProps }: AppProps) 
 
     const router = useRouter();
 
-
     if (router.pathname === '/')
       return <Component {...pageProps} />;
 
